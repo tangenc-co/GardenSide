@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CloudImage } from "@/components/CloudImage";
+import { CatalogImage } from "@/components/CatalogImage";
 import type { ProductListItem } from "@/types/catalog";
 
 export function ProductCard({ product }: { product: ProductListItem }) {
@@ -9,7 +9,7 @@ export function ProductCard({ product }: { product: ProductListItem }) {
       className="group flex flex-col overflow-hidden rounded-lg border border-zinc-200/80 bg-white shadow-sm transition hover:border-amber-900/20 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950"
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-zinc-100 dark:bg-zinc-900">
-        <CloudImage
+        <CatalogImage
           image={product.mainImage}
           width={800}
           height={600}

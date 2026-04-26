@@ -1,7 +1,6 @@
-import { CloudImage } from "@/components/CloudImage";
+import { CatalogImage } from "@/components/CatalogImage";
 import { PortableBody } from "@/components/PortableBody";
 import { getAllProductSlugs, getProductBySlug } from "@/lib/sanity/fetch";
-import { isCloudinaryConfigured } from "@/lib/cloudinary";
 import { getSanityProjectId } from "@/sanity/env";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -15,14 +14,14 @@ export const revalidate = 60;
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { slug } = await props.params;
   if (!getSanityProjectId()) {
-    return { title: "Product | Lumen Home" };
+    return { title: "Product | Garden Side" };
   }
   const product = await getProductBySlug(slug);
   if (!product) {
-    return { title: "Not found | Lumen Home" };
+    return { title: "Not found | Garden Side" };
   }
   return {
-    title: `${product.title} | Lumen Home`,
+    title: `${product.title} | Garden Side`,
     description: product.shortDescription || undefined,
   };
 }
@@ -41,7 +40,7 @@ export default async function ProductPage(props: Props) {
   if (!getSanityProjectId()) {
     return (
       <div className="mx-auto w-full max-w-3xl flex-1 px-4 py-10 sm:px-6">
-        <SetupCallout kind="both" />
+        <SetupCallout />
       </div>
     );
   }
@@ -51,9 +50,8 @@ export default async function ProductPage(props: Props) {
     notFound();
   }
 
-  const hasCloud = isCloudinaryConfigured();
   const gallery = product.gallery ?? [];
-  const extra = gallery.filter((g) => g.publicId !== product.mainImage.publicId);
+  const extra = gallery.filter((g) => g.url && g.url !== product.mainImage.url);
   const images = [product.mainImage, ...extra];
 
   return (
@@ -68,20 +66,14 @@ export default async function ProductPage(props: Props) {
         <span className="text-zinc-800 dark:text-zinc-200">{product.title}</span>
       </nav>
 
-      {!hasCloud && (
-        <div className="mt-6">
-          <SetupCallout kind="cloudinary" />
-        </div>
-      )}
-
       <div className="mt-8 grid gap-10 lg:grid-cols-[1.1fr_1fr]">
         <div className="space-y-3">
           {images.map((img, index) => (
             <div
-              key={`${img.publicId}-${index}`}
+              key={`${img.url ?? "img"}-${index}`}
               className="overflow-hidden rounded-lg border border-zinc-200/80 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900"
             >
-              <CloudImage
+              <CatalogImage
                 image={img}
                 width={1000}
                 height={750}

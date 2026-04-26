@@ -6,7 +6,7 @@ if (!projectId) {
   throw new Error("Set NEXT_PUBLIC_SANITY_PROJECT_ID in .env.local.");
 }
 
-// For Sanity CDN assets. Product images in this app use Cloudinary; keep this for future / mixed use.
+// Sanity image URL builder (optional transforms) for any `image` field assets.
 const builder = createImageUrlBuilder({ projectId, dataset: getSanityDataset() });
 
 export const urlFor = (source: SanityImageSource) => {

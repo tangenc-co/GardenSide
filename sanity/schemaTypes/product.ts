@@ -47,21 +47,43 @@ export const product = defineType({
     }),
     defineField({
       name: "mainImage",
-      type: "cloudinaryImage",
+      type: "image",
       title: "Main image",
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
+          description: "For accessibility and SEO.",
+          validation: (rule) => rule.required(),
+        }),
+      ],
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "gallery",
       type: "array",
       title: "Gallery",
-      of: [{ type: "cloudinaryImage" }],
+      of: [
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            defineField({
+              name: "alt",
+              type: "string",
+              title: "Alternative text",
+            }),
+          ],
+        },
+      ],
     }),
   ],
   preview: {
-    select: { title: "title", publicId: "mainImage.publicId" },
-    prepare({ title, publicId }) {
-      return { title, subtitle: publicId || "No main image" };
+    select: { title: "title", media: "mainImage" },
+    prepare({ title, media }) {
+      return { title, media };
     },
   },
 });

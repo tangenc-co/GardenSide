@@ -18,8 +18,5 @@ export default defineConfig({
   dataset: getSanityDataset(),
   apiVersion,
   schema,
-  plugins: [
-    structureTool({ structure }),
-    visionTool({ defaultApiVersion: apiVersion }),
-  ],
+  plugins: [structureTool({ structure }), visionTool({ defaultApiVersion: apiVersion })],
 });

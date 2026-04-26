@@ -1,6 +1,11 @@
 import { defineQuery } from "next-sanity";
 
-const cloudinaryImage = `{ publicId, alt }`;
+const imageFields = `{
+  "url": asset->url,
+  "alt": coalesce(alt, ""),
+  "width": asset->metadata.dimensions.width,
+  "height": asset->metadata.dimensions.height
+}`;
 
 export const productsListQuery = defineQuery(`*[_type == "product" && defined(slug.current)] | order(_createdAt desc) {
   _id,
@@ -13,8 +18,8 @@ export const productsListQuery = defineQuery(`*[_type == "product" && defined(sl
     title,
     "slug": slug.current
   },
-  mainImage${cloudinaryImage},
-  "gallery": gallery[]${cloudinaryImage}
+  "mainImage": mainImage${imageFields},
+  "gallery": gallery[]${imageFields}
 }`);
 
 export const productBySlugQuery = defineQuery(`*[_type == "product" && slug.current == $slug][0] {
@@ -29,7 +34,7 @@ export const productBySlugQuery = defineQuery(`*[_type == "product" && slug.curr
     title,
     "slug": slug.current
   },
-  mainImage${cloudinaryImage},
-  "gallery": gallery[]${cloudinaryImage}
+  "mainImage": mainImage${imageFields},
+  "gallery": gallery[]${imageFields}
 }`);
 

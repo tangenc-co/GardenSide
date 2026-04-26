@@ -1,6 +1,9 @@
-export type CloudinaryImage = {
-  publicId: string;
+/** Resolved Sanity image (asset URL + alt) for the storefront. */
+export type ProductImage = {
+  url: string | null;
   alt: string;
+  width: number | null;
+  height: number | null;
 };
 
 export type CategoryRef = {
@@ -16,8 +19,8 @@ export type ProductListItem = {
   shortDescription: string | null;
   priceLabel: string | null;
   category: CategoryRef | null;
-  mainImage: CloudinaryImage;
-  gallery: CloudinaryImage[] | null;
+  mainImage: ProductImage;
+  gallery: ProductImage[] | null;
 };
 
 /** Rich text blocks from Sanity portable text. */

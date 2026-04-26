@@ -12,8 +12,9 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "res.cloudinary.com",
-        pathname: "/**",
+        hostname: "cdn.sanity.io",
+        port: "",
+        pathname: "/images/**",
       },
     ],
   },

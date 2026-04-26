@@ -1,22 +1,19 @@
 import { ProductCard } from "@/components/ProductCard";
 import { SetupCallout } from "@/components/SetupCallout";
 import { getProductsList } from "@/lib/sanity/fetch";
-import { isCloudinaryConfigured } from "@/lib/cloudinary";
 import { getSanityProjectId } from "@/sanity/env";
 import type { Metadata } from "next";
 
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Collection | Lumen Home",
+  title: "Collection | Garden Side",
   description: "Browse our furniture and interior pieces.",
 };
 
 export default async function ProductsPage() {
   const hasSanity = Boolean(getSanityProjectId());
   const products = hasSanity ? await getProductsList() : null;
-  const hasCloud = isCloudinaryConfigured();
-
   return (
     <div className="mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6">
       <div className="mb-8">
@@ -26,15 +23,13 @@ export default async function ProductsPage() {
         </p>
       </div>
 
-      {!hasSanity && <SetupCallout kind="both" />}
+      {!hasSanity && <SetupCallout />}
 
       {hasSanity && (!products || products.length === 0) && (
         <p className="text-zinc-600 dark:text-zinc-400">
           No products published yet. Open Sanity Studio to add your first product.
         </p>
       )}
-
-      {products && products.length > 0 && !hasCloud && <SetupCallout kind="cloudinary" />}
 
       {products && products.length > 0 && (
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
