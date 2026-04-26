@@ -1,0 +1,67 @@
+import { defineField, defineType } from "sanity";
+
+export const product = defineType({
+  name: "product",
+  title: "Product",
+  type: "document",
+  fields: [
+    defineField({
+      name: "title",
+      type: "string",
+      title: "Title",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "slug",
+      type: "slug",
+      title: "Slug",
+      options: { source: "title", maxLength: 96 },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "category",
+      type: "reference",
+      title: "Category",
+      to: [{ type: "category" }],
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "shortDescription",
+      type: "text",
+      title: "Short description",
+      rows: 3,
+      description: "Shown in listings and the top of the product page.",
+    }),
+    defineField({
+      name: "body",
+      type: "array",
+      title: "Details",
+      of: [{ type: "block" }],
+    }),
+    defineField({
+      name: "priceLabel",
+      type: "string",
+      title: "Price (display only)",
+      description:
+        "E.g. “From $1,200” or “$899”. The storefront is view-only; no checkout yet.",
+    }),
+    defineField({
+      name: "mainImage",
+      type: "cloudinaryImage",
+      title: "Main image",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "gallery",
+      type: "array",
+      title: "Gallery",
+      of: [{ type: "cloudinaryImage" }],
+    }),
+  ],
+  preview: {
+    select: { title: "title", publicId: "mainImage.publicId" },
+    prepare({ title, publicId }) {
+      return { title, subtitle: publicId || "No main image" };
+    },
+  },
+});
