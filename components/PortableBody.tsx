@@ -26,3 +26,4 @@ export function PortableBody({ value }: { value: ProductDetail["body"] }) {
     </div>
   );
 }
+
