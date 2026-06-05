@@ -4,7 +4,7 @@ export function HeroSection() {
   return (
     <div className="relative">
       <Image
-        src="/img/Section.png"
+        src="/img/section.png"
         alt="Garden Furniture"
         width={1920}
         height={900}
@@ -13,8 +13,8 @@ export function HeroSection() {
       />
 
       <div className="absolute inset-0 justify-center flex items-center">
-        <div className="mx-auto w-full max-w-7xl px-4">
-          <div className="max-w-205 ">
+        <div className="mx-auto w-full max-w-7xl px-4 ">
+          <div className="max-w-205">
             <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#97CCB3] bg-[#97CCB34D] px-5 py-2 backdrop-blur-sm">
               <Image src="/icon/leaf.svg" alt="leaf" width={14} height={14} />
               <span className="text-xs font-semibold uppercase tracking-[3px] text-[#97CCB3]">

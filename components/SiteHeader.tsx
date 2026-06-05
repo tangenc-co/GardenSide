@@ -5,9 +5,9 @@ import Image from "next/image";
 const navItem = [
   {id:1, label: 'Home', herf: '/'},
   {id:2, label: 'Product', herf: '/product'},
-  {id:3, label: 'Teak Care', herf: 'teakcare'},
-  {id:4, label: 'About Us', herf: 'about-us'},
-  {id:5, label: 'Contact Us', herf: 'contact-us'}
+  {id:3, label: 'Teak Care', herf: '/teak-care'},
+  {id:4, label: 'About Us', herf: '/about-us'},
+  {id:5, label: 'Contact Us', herf: '/contact-us'}
 ]
 export function SiteHeader() {
   const pathname = usePathname();
