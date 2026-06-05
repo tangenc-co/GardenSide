@@ -1,39 +1,54 @@
-import { ProductCard } from "@/components/ProductCard";
-import { SetupCallout } from "@/components/SetupCallout";
-import { getProductsList } from "@/lib/sanity/fetch";
-import { getSanityProjectId } from "@/sanity/env";
-import Link from "next/link";
+// import { ProductCard } from "@/components/ProductCard";
+// import { SetupCallout } from "@/components/SetupCallout";
+// import { getProductsList } from "@/lib/sanity/fetch";
+// import { getSanityProjectId } from "@/sanity/env";
+import { HeroSection } from "@/components/HeroSection";
+import { Purpose } from "@/components/Purpose";
 
 export const revalidate = 60;
-
+const metadata = [
+  {
+    id: 1,
+    title: "25+",
+    caption: "Years of Expertise",
+  },
+  {
+    id: 2,
+    title: "8000+",
+    caption: "Happy Customers",
+  },
+  {
+    id: 3,
+    title: "60+",
+    caption: "Products in Range",
+  },
+  {
+    id: 4,
+    title: "100% ",
+    caption: "Sustainably Sourced",
+  },
+];
 export default async function HomePage() {
-  const hasSanity = Boolean(getSanityProjectId());
-  const products = hasSanity ? await getProductsList() : null;
+  // const hasSanity = Boolean(getSanityProjectId());
+  // const products = hasSanity ? await getProductsList() : null;
   return (
-    <div className="flex flex-1 flex-col">
-      <section className="border-b border-zinc-200/80 bg-gradient-to-b from-amber-50/40 to-zinc-50/30 px-4 py-16 dark:border-zinc-800 dark:from-amber-950/20 dark:to-zinc-950/40 sm:px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-amber-900/80 dark:text-amber-200/80">
-            Furniture & interiors
-          </p>
-          <h1 className="mt-4 font-serif-ui text-4xl text-zinc-900 sm:text-5xl dark:text-zinc-50">
-            Garden Side
-          </h1>
-          <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-            Explore the collection. Prices are shown for reference; online purchasing is not enabled yet.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Link
-              href="/products"
-              className="inline-flex h-12 items-center justify-center rounded-md bg-zinc-900 px-6 text-sm font-medium text-white transition hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white"
-            >
-              View full collection
-            </Link>
+    <section>
+      <HeroSection />
+      <div className="mx-auto w-full bg-[#213526]">
+        <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {metadata.map((item) => (
+              <div key={item.id} className="text-center">
+                <p className="text-4xl font-medium text-white">{item.title}</p>
+                <p className="mt-2 text-lg text-[#FFFFFFA6]">{item.caption}</p>
+              </div>
+            ))}
           </div>
         </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl flex-1 px-4 py-12 sm:px-6">
+      </div>
+      <Purpose />
+      {/* <AboutTeak /> */}
+      {/* <section className="mx-auto w-full max-w-6xl flex-1 px-4 py-12 sm:px-6">
         {!hasSanity && (
           <div className="mb-10">
             <SetupCallout />
@@ -62,7 +77,7 @@ export default async function HomePage() {
             </ul>
           </div>
         )}
-      </section>
-    </div>
+      </section> */}
+    </section>
   );
 }

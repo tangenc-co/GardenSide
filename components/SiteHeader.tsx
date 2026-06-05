@@ -1,6 +1,7 @@
 "use client"
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 const navItem = [
   {id:1, label: 'Home', herf: '/'},
   {id:2, label: 'Product', herf: '/product'},
@@ -14,7 +15,7 @@ export function SiteHeader() {
     <header className="border-b border-[#E5E7EB] bg-[#FAFAF8] backdrop-blur ">
       <div className="mx-auto flex h-16 max-w-330 items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" className="font-serif-ui text-xl text-black">
-          Logo
+          <Image src="/icon/logo.svg" alt="Garden Side Logo" width={120} height={40} className="w-full h-auto" loading="lazy"/>
         </Link>
         <nav>
             <ul className="flex gap-12 items-center font-medium text-lg">
