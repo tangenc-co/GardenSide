@@ -1,0 +1,344 @@
+[
+  {
+    "id": 1,
+    "name": "Classic Teak Dining Set",
+    "slug": "classic-teak-dining-set",
+    "category": "Dining Sets",
+    "material": "Teak Wood",
+    "space": "Garden",
+    "price": 2499,
+    "rating": 4.8,
+    "reviews": 124,
+    "description": "Premium teak dining set designed for outdoor entertaining.",
+    "dimensions": "84\"W x 40\"D x 30\"H",
+    "features": [
+      "Grade A Teak",
+      "FSC Certified",
+      "Weather Resistant",
+      "25-Year Guarantee"
+    ],
+    "thumbnail": "/img/product-demo.png",
+    "images": [
+      "/img/chair-gallery-demo1.png",
+      "/img/chair-gallery-demo2.png",
+      "/img/chair-gallery-demo3.png",
+      "/img/chair-gallery-demo4.png"
+    ],
+    "inStock": true,
+    "featured": true
+  },
+  {
+    "id": 2,
+    "name": "Somerset Garden Bench",
+    "slug": "somerset-garden-bench",
+    "category": "Garden Benches",
+    "material": "Teak Wood",
+    "space": "Terrace",
+    "price": 799,
+    "rating": 4.7,
+    "reviews": 87,
+    "description": "Elegant bench perfect for patios and gardens.",
+    "dimensions": "72\"W x 24\"D x 36\"H",
+    "features": ["Solid Teak", "UV Resistant", "Handcrafted", "Outdoor Grade"],
+    "thumbnail": "/img/product-demo1.png",
+    "images": [
+      "/img/chair-gallery-demo1.png",
+      "/img/chair-gallery-demo2.png",
+      "/img/chair-gallery-demo3.png",
+      "/img/chair-gallery-demo4.png"
+    ],
+
+    "inStock": true,
+    "featured": false
+  },
+  {
+    "id": 3,
+    "name": "Coastal Outdoor Sofa",
+    "slug": "coastal-outdoor-sofa",
+    "category": "Outdoor Sofas",
+    "material": "Aluminum",
+    "space": "Poolside",
+    "price": 1899,
+    "rating": 4.9,
+    "reviews": 203,
+    "description": "Luxury outdoor sofa with weatherproof cushions.",
+    "dimensions": "90\"W x 34\"D x 32\"H",
+    "features": [
+      "Powder-Coated Frame",
+      "Quick Dry Cushions",
+      "Modern Design",
+      "Rust Resistant"
+    ],
+    "thumbnail": "/img/product-demo2.png",
+    "images": [
+      "/img/chair-gallery-demo1.png",
+      "/img/chair-gallery-demo2.png",
+      "/img/chair-gallery-demo3.png",
+      "/img/chair-gallery-demo4.png"
+    ],
+
+    "inStock": true,
+    "featured": true
+  },
+  {
+    "id": 4,
+    "name": "Terracotta Garden Planter",
+    "slug": "terracotta-garden-planter",
+    "category": "Planters & Decor",
+    "material": "Terracotta",
+    "space": "Garden",
+    "price": 149,
+    "rating": 4.6,
+    "reviews": 42,
+    "description": "Traditional terracotta planter for flowers and herbs.",
+    "dimensions": "18\"W x 18\"H",
+    "features": [
+      "Natural Clay",
+      "Drainage Hole",
+      "Hand Finished",
+      "Weather Resistant"
+    ],
+    "thumbnail": "/img/product-demo.png",
+    "images": [
+      "/img/chair-gallery-demo1.png",
+      "/img/chair-gallery-demo2.png",
+      "/img/chair-gallery-demo3.png",
+      "/img/chair-gallery-demo4.png"
+    ],
+
+    "inStock": true,
+    "featured": false
+  },
+  {
+    "id": 5,
+    "name": "Lounge Chair Deluxe",
+    "slug": "lounge-chair-deluxe",
+    "category": "Lounge Chairs",
+    "material": "Teak Wood",
+    "space": "Balcony",
+    "price": 599,
+    "rating": 4.8,
+    "reviews": 95,
+    "description": "Comfortable teak lounge chair with ergonomic design.",
+    "dimensions": "30\"W x 34\"D x 36\"H",
+    "features": [
+      "Ergonomic Design",
+      "Premium Teak",
+      "Handcrafted",
+      "Outdoor Safe"
+    ],
+    "thumbnail": "/img/product-demo1.png",
+    "images": [
+      "/img/chair-gallery-demo1.png",
+      "/img/chair-gallery-demo2.png",
+      "/img/chair-gallery-demo3.png",
+      "/img/chair-gallery-demo4.png"
+    ],
+
+    "inStock": true,
+    "featured": false
+  },
+  {
+    "id": 6,
+    "name": "Modern Concrete Fire Table",
+    "slug": "modern-concrete-fire-table",
+    "category": "Tables",
+    "material": "Concrete",
+    "space": "Garden",
+    "price": 1299,
+    "rating": 4.5,
+    "reviews": 38,
+    "description": "Modern fire table for stylish outdoor gatherings.",
+    "dimensions": "48\"W x 48\"D x 18\"H",
+    "features": [
+      "Concrete Finish",
+      "Gas Powered",
+      "Weatherproof",
+      "Contemporary Style"
+    ],
+    "thumbnail": "/img/product-demo2.png",
+    "images": [
+      "/img/chair-gallery-demo1.png",
+      "/img/chair-gallery-demo2.png",
+      "/img/chair-gallery-demo3.png",
+      "/img/chair-gallery-demo4.png"
+    ],
+
+    "inStock": false,
+    "featured": true
+  },
+  {
+    "id": 7,
+    "name": "Windsor Daybed",
+    "slug": "windsor-daybed",
+    "category": "Lounge & Daybed",
+    "material": "Teak Wood",
+    "space": "Poolside",
+    "price": 1699,
+    "rating": 4.9,
+    "reviews": 71,
+    "description": "Relax in style with this luxurious outdoor daybed.",
+    "dimensions": "82\"W x 60\"D x 34\"H",
+    "features": [
+      "Weatherproof Cushions",
+      "Premium Teak",
+      "Adjustable Backrest",
+      "Luxury Design"
+    ],
+    "thumbnail": "/img/product-demo.png",
+    "images": [
+      "/img/chair-gallery-demo1.png",
+      "/img/chair-gallery-demo2.png",
+      "/img/chair-gallery-demo3.png",
+      "/img/chair-gallery-demo4.png"
+    ],
+
+    "inStock": true,
+    "featured": true
+  },
+  {
+    "id": 8,
+    "name": "Chelsea Bistro Set",
+    "slug": "chelsea-bistro-set",
+    "category": "Dining Sets",
+    "material": "Teak Wood",
+    "space": "Balcony",
+    "price": 499,
+    "rating": 4.6,
+    "reviews": 55,
+    "description": "Compact dining set perfect for balconies.",
+    "dimensions": "30\"W x 30\"D x 29\"H",
+    "features": [
+      "Foldable",
+      "Space Saving",
+      "Weather Resistant",
+      "Premium Finish"
+    ],
+    "thumbnail": "/img/product-demo1.png",
+    "images": [
+      "/img/chair-gallery-demo1.png",
+      "/img/chair-gallery-demo2.png",
+      "/img/chair-gallery-demo3.png",
+      "/img/chair-gallery-demo4.png"
+    ],
+
+    "inStock": true,
+    "featured": false
+  },
+  {
+    "id": 9,
+    "name": "Richmond Garden Bench",
+    "slug": "richmond-garden-bench",
+    "category": "Garden Benches",
+    "material": "Teak Wood",
+    "space": "Garden",
+    "price": 899,
+    "rating": 4.8,
+    "reviews": 112,
+    "description": "Classic English-style garden bench.",
+    "dimensions": "74\"W x 24\"D x 36\"H",
+    "features": [
+      "Solid Teak",
+      "Classic Design",
+      "Outdoor Grade",
+      "Easy Maintenance"
+    ],
+    "thumbnail": "/img/product-demo2.png",
+    "images": [
+      "/img/chair-gallery-demo1.png",
+      "/img/chair-gallery-demo2.png",
+      "/img/chair-gallery-demo3.png",
+      "/img/chair-gallery-demo4.png"
+    ],
+
+    "inStock": true,
+    "featured": true
+  },
+  {
+    "id": 10,
+    "name": "Teak Coffee Table",
+    "slug": "teak-coffee-table",
+    "category": "Tables",
+    "material": "Teak Wood",
+    "space": "Terrace",
+    "price": 399,
+    "rating": 4.7,
+    "reviews": 64,
+    "description": "Stylish teak coffee table for outdoor spaces.",
+    "dimensions": "48\"W x 24\"D x 18\"H",
+    "features": [
+      "Premium Teak",
+      "Handcrafted",
+      "Weather Resistant",
+      "Minimalist Style"
+    ],
+    "thumbnail": "/img/product-demo.png",
+    "images": [
+      "/img/chair-gallery-demo1.png",
+      "/img/chair-gallery-demo2.png",
+      "/img/chair-gallery-demo3.png",
+      "/img/chair-gallery-demo4.png"
+    ],
+
+    "inStock": true,
+    "featured": false
+  },
+  {
+    "id": 11,
+    "name": "Luxury Cantilever Parasol",
+    "slug": "luxury-cantilever-parasol",
+    "category": "Parasols & Shade",
+    "material": "Aluminum",
+    "space": "Garden",
+    "price": 999,
+    "rating": 4.9,
+    "reviews": 89,
+    "description": "Large parasol providing excellent shade coverage.",
+    "dimensions": "10ft Diameter",
+    "features": [
+      "360° Rotation",
+      "UV Protection",
+      "Weatherproof Fabric",
+      "Easy Operation"
+    ],
+    "thumbnail": "/img/product-demo1.png",
+    "images": [
+      "/img/chair-gallery-demo1.png",
+      "/img/chair-gallery-demo2.png",
+      "/img/chair-gallery-demo3.png",
+      "/img/chair-gallery-demo4.png"
+    ],
+
+    "inStock": true,
+    "featured": true
+  },
+  {
+    "id": 12,
+    "name": "Decorative Stone Planter",
+    "slug": "decorative-stone-planter",
+    "category": "Planters & Decor",
+    "material": "Stone",
+    "space": "Garden",
+    "price": 199,
+    "rating": 4.5,
+    "reviews": 29,
+    "description": "Elegant stone planter for premium landscapes.",
+    "dimensions": "20\"W x 20\"H",
+    "features": [
+      "Natural Stone",
+      "Hand Finished",
+      "Drainage System",
+      "Outdoor Durable"
+    ],
+    "thumbnail": "/img/product-demo2.png",
+    "images": [
+      "/img/chair-gallery-demo1.png",
+      "/img/chair-gallery-demo2.png",
+      "/img/chair-gallery-demo3.png",
+      "/img/chair-gallery-demo4.png"
+    ],
+
+    "inStock": true,
+    "featured": false
+  }
+]

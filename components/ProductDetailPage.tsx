@@ -1,0 +1,25 @@
+import { Product } from "@/types/catalog";
+import { ProductBreadcrumb } from "@/components/ProductBreadCrumb";
+import { ProductGallery } from "@/components/ProductGallery";
+import { ProductInformation } from "@/components/ProductInformation";
+
+type ProductDetailPageProps = {
+  product: Product;
+};
+
+export function ProductDetailPage({ product }: ProductDetailPageProps) {
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-10">
+      <ProductBreadcrumb
+        category={product.category}
+        productName={product.name}
+      />
+
+      <div className="grid gap-10 lg:grid-cols-2">
+        <ProductGallery images={product.images} name={product.name} />
+
+        <ProductInformation product={product} />
+      </div>
+    </section>
+  );
+}
