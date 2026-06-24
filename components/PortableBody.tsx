@@ -2,8 +2,11 @@ import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import type { ProductDetail } from "@/types/catalog";
 
 const components: PortableTextComponents = {
-  block: {
-    normal: ({ children }) => <p className="mb-3 text-zinc-700 last:mb-0 dark:text-zinc-300">{children}</p>,
+  types: {
+    block: ({ value }) => {
+      if (!value) return null;
+      return <p className="mb-3 text-zinc-700 last:mb-0 dark:text-zinc-300">{value.children?.map((child: any) => child.text).join("")}</p>;
+    },
   },
   marks: {
     strong: ({ children }) => <strong className="font-semibold text-zinc-900 dark:text-zinc-100">{children}</strong>,

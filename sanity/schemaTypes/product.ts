@@ -26,6 +26,18 @@ export const product = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "material",
+      type: "string",
+      title: "Material",
+      description: "e.g., Teak Wood, Aluminum, Terracotta",
+    }),
+    defineField({
+      name: "space",
+      type: "string",
+      title: "Room/Space",
+      description: "e.g., Garden, Terrace, Poolside, Balcony",
+    }),
+    defineField({
       name: "shortDescription",
       type: "text",
       title: "Short description",

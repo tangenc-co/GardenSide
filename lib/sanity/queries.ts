@@ -18,6 +18,8 @@ export const productsListQuery = defineQuery(`*[_type == "product" && defined(sl
     title,
     "slug": slug.current
   },
+  material,
+  space,
   "mainImage": mainImage${imageFields},
   "gallery": gallery[]${imageFields}
 }`);
@@ -34,7 +36,15 @@ export const productBySlugQuery = defineQuery(`*[_type == "product" && slug.curr
     title,
     "slug": slug.current
   },
+  material,
+  space,
   "mainImage": mainImage${imageFields},
   "gallery": gallery[]${imageFields}
+}`);
+
+export const filterOptionsQuery = defineQuery(`{
+  "categories": *[_type == "product" && defined(category->title)].category->title,
+  "materials": *[_type == "product" && defined(material)].material,
+  "spaces": *[_type == "product" && defined(space)].space
 }`);
 

@@ -1,5 +1,5 @@
 import { getSanityClient } from "@/lib/sanity/client";
-import { productBySlugQuery, productsListQuery } from "@/lib/sanity/queries";
+import { filterOptionsQuery, productBySlugQuery, productsListQuery } from "@/lib/sanity/queries";
 import type { ProductDetail, ProductListItem } from "@/types/catalog";
 
 async function safeFetch<T>(fn: () => Promise<T>, fallback: T): Promise<T> {
@@ -43,6 +43,21 @@ export async function getAllProductSlugs(): Promise<string[]> {
       return data.map((d) => d.slug).filter(Boolean);
     },
     [],
+  );
+}
+
+export type FilterOptions = {
+  categories: string[];
+  materials: string[];
+  spaces: string[];
+};
+
+export async function getFilterOptions(): Promise<FilterOptions | null> {
+  const client = getSanityClient();
+  if (!client) return null;
+  return safeFetch(
+    () => client.fetch<FilterOptions>(filterOptionsQuery),
+    { categories: [], materials: [], spaces: [] },
   );
 }
 

@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { ProductImage } from "@/types/catalog";
 
 type CatalogImageProps = {
-  image: ProductImage;
+  image: ProductImage | null | undefined;
   width: number;
   height: number;
   className?: string;
@@ -14,7 +14,7 @@ type CatalogImageProps = {
  * Renders a Sanity `image` field (uploaded in Studio) via `asset->url` (Sanity CDN).
  */
 export function CatalogImage({ image, width, height, className, priority, sizes }: CatalogImageProps) {
-  if (!image.url) {
+  if (!image || !image.url) {
     return (
       <div
         className={`bg-zinc-200 text-zinc-500 flex items-center justify-center text-sm p-4 text-center ${className ?? ""}`}

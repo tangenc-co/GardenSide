@@ -1,36 +1,29 @@
-import { Product } from "@/types/catalog";
+import { ProductDetail } from "@/types/catalog";
 import { ProductBreadcrumb } from "@/components/ProductBreadCrumb";
 import { ProductGallery } from "@/components/ProductGallery";
 import { ProductInformation } from "@/components/ProductInformation";
 import { RelatedProducts } from "./RelatedProduct";
-import products from "@/data/products.json";
+
 type ProductDetailPageProps = {
-  product: Product;
+  product: ProductDetail;
 };
 
-export function ProductDetailPage({
-  product,
-}: ProductDetailPageProps) {
-
-  const relatedProducts = products
-    .filter(
-      (p) =>
-        p.category === product.category &&
-        p.id !== product.id
-    )
-    .slice(0, 4);
+export function ProductDetailPage({ product }: ProductDetailPageProps) {
+  const images = product.mainImage?.url 
+    ? [product.mainImage.url, ...(product.gallery?.map(g => g.url).filter((url): url is string => Boolean(url)) || [])] 
+    : [];
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-10">
       <ProductBreadcrumb
-        category={product.category}
-        productName={product.name}
+        category={product.category?.title || ""}
+        productName={product.title}
       />
 
       <div className="grid gap-10 lg:grid-cols-2">
-        <ProductGallery
-          images={product.images}
-          name={product.name}
+        <ProductGallery 
+          images={images} 
+          name={product.title} 
         />
 
         <ProductInformation
@@ -40,7 +33,7 @@ export function ProductDetailPage({
 
       <div className="mt-20">
         <RelatedProducts
-          products={relatedProducts}
+          products={[]}
         />
       </div>
     </section>

@@ -8,39 +8,42 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-const filterGroups = [
-  {
-    title: "Category",
-    options: [
-      { label: "Dining Sets", count: 13 },
-      { label: "Garden Benches", count: 20 },
-      { label: "Outdoor Sofas", count: 13 },
-      { label: "Planters & Decor", count: 40 },
-      { label: "Lounge Chairs", count: 9 },
-    ],
-  },
-  {
-    title: "Materials",
-    options: [
-      { label: "Teak Wood", count: 13 },
-      { label: "Aluminum", count: 20 },
-      { label: "Terracotta", count: 13 },
-      { label: "Metal", count: 40 },
-      { label: "Concrete", count: 9 },
-    ],
-  },
-  {
-    title: "Room/Space",
-    options: [
-      { label: "Garden", count: 13 },
-      { label: "Terrace", count: 20 },
-      { label: "Poolside", count: 13 },
-      { label: "Balcony", count: 40 },
-    ],
-  },
-];
+import { useState } from "react";
 
-export function ProductFilters() {
+type FilterGroup = {
+  title: string;
+  options: { label: string; count: number }[];
+};
+
+export function ProductFilters({
+  filterOptions,
+  onFilterChange,
+  searchQuery,
+  onSearchChange,
+}: {
+  filterOptions: FilterGroup[] | null;
+  onFilterChange: (filters: { category: string[]; material: string[]; space: string[] }) => void;
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
+}) {
+  const [selectedFilters, setSelectedFilters] = useState<{
+    category: string[];
+    material: string[];
+    space: string[];
+  }>({ category: [], material: [], space: [] });
+
+  const handleFilterToggle = (group: keyof typeof selectedFilters, label: string) => {
+    const newFilters = { ...selectedFilters };
+    const index = newFilters[group].indexOf(label);
+    if (index > -1) {
+      newFilters[group].splice(index, 1);
+    } else {
+      newFilters[group].push(label);
+    }
+    setSelectedFilters(newFilters);
+    onFilterChange(newFilters);
+  };
+
   return (
     <aside className="rounded-lg border border-[#72BF96] bg-white p-8">
       <div className="space-y-3">
@@ -55,6 +58,8 @@ export function ProductFilters() {
         <Input
           placeholder="Search products..."
           className="mt-6 h-12"
+          value={searchQuery}
+          onChange={(e) => onSearchChange(e.target.value)}
         />
       </div>
 
@@ -63,7 +68,7 @@ export function ProductFilters() {
         defaultValue={["Category", "Materials", "Room/Space"]}
         className="mt-10"
       >
-        {filterGroups.map((group) => (
+        {filterOptions?.map((group) => (
           <AccordionItem
             key={group.title}
             value={group.title}
@@ -75,27 +80,40 @@ export function ProductFilters() {
 
             <AccordionContent>
               <div className="space-y-4 py-2">
-                {group.options.map((option) => (
-                  <div
-                    key={option.label}
-                    className="flex items-center justify-between"
-                  >
-                    <div className="flex items-center gap-3">
-                      <Checkbox id={option.label} />
+                {group.options.map((option) => {
+                  const groupKeyMap: Record<string, keyof typeof selectedFilters> = {
+                    "Category": "category",
+                    "Materials": "material",
+                    "Room/Space": "space",
+                  };
+                  const groupKey = groupKeyMap[group.title];
+                  if (!groupKey) return null;
+                  return (
+                    <div
+                      key={option.label}
+                      className="flex items-center justify-between"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Checkbox
+                          id={option.label}
+                          checked={selectedFilters[groupKey].includes(option.label)}
+                          onCheckedChange={() => handleFilterToggle(groupKey, option.label)}
+                        />
 
-                      <label
-                        htmlFor={option.label}
-                        className="cursor-pointer text-base text-[#667085]"
-                      >
-                        {option.label}
-                      </label>
+                        <label
+                          htmlFor={option.label}
+                          className="cursor-pointer text-base text-[#667085]"
+                        >
+                          {option.label}
+                        </label>
+                      </div>
+
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EDF7F1] text-sm text-[#056839]">
+                        {option.count}
+                      </span>
                     </div>
-
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EDF7F1] text-sm text-[#056839]">
-                      {option.count}
-                    </span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </AccordionContent>
           </AccordionItem>
