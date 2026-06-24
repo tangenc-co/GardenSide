@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { getSanityProjectId } from "@/sanity/env";
 
 const navItem = [
@@ -13,19 +12,11 @@ const navItem = [
   {id:5, label: 'Contact Us', herf: '/contact-us'}
 ]
 
+// Check if Sanity is configured - this is evaluated at build time
+const hasSanityConfig = Boolean(getSanityProjectId());
+
 export function SiteHeader() {
   const pathname = usePathname();
-  const [showStudioLink, setShowStudioLink] = useState(false);
-
-  useEffect(() => {
-    // Show Studio link if Sanity is configured AND user has logged in before
-    // Sanity Studio handles its own auth - if user isn't logged in,
-    // they'll be prompted to authenticate when visiting /studio
-    const hasSanity = Boolean(getSanityProjectId());
-    const lastProvider = localStorage.getItem('sanity:last_used_provider');
-    
-    setShowStudioLink(hasSanity && Boolean(lastProvider));
-  }, []);
 
   return (
     <header className="border-b border-[#E5E7EB] bg-[#FAFAF8] backdrop-blur ">
@@ -48,7 +39,7 @@ export function SiteHeader() {
             </ul>
         </nav>
         <div className="flex gap-4 items-center">
-          {showStudioLink && (
+          {hasSanityConfig && (
             <Link 
               href="/studio" 
               className="text-[#056839] border border-[#056839] rounded-md px-4 py-2 font-medium text-lg hover:bg-[#056839] hover:text-white transition-colors"
