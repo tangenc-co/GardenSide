@@ -1,9 +1,9 @@
-import { Product } from "@/types/catalog";
+import { ProductListItem } from "@/types/catalog";
 import { ProductCard } from "./ProductCard";
 import Link from "next/link";
 
 interface RelatedProductsProps {
-  products: Product[];
+  products: ProductListItem[];
 }
 
 export function RelatedProducts({
@@ -25,7 +25,7 @@ export function RelatedProducts({
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
         {products.map((product) => (
           <ProductCard
-            key={product.id}
+            key={product._id}
             product={product}
           />
         ))}
