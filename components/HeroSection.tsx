@@ -4,7 +4,7 @@ export function HeroSection() {
   return (
     <div className="relative">
       <Image
-        src="/img/section.png"
+        src="/img/Section.png"
         alt="Garden Furniture"
         width={1920}
         height={900}
