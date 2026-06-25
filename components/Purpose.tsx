@@ -80,28 +80,38 @@ export function Purpose() {
             ))}
           </div>
         </div>
-        <div className="flex items-center gap-20 mt-20 py-12">
-          <div className= "max-width-[50%]">
-            <Image
-              src="/img/about-teak.png"
-              alt="About Teak"
-              width={600}
-              height={460}
-              loading='eager'
-            />
-          </div>
-          <div className="text-left max-w-[50%] ">
-            <p className="text-[#056839] font-medium text-lg">— Quality Craftsmanship</p>
-            <p className="text-[#213526] text-[40px] font-semibold">About Our Teak Furniture</p>
-            <p className= "text-[#3D3D3D] text-[16px] mt-4 pr-14">
-              Gardenside is one of the teak furniture companies leading in the
-              world. Our company was established 30 years since 1993. Our
-              services include the whole process, starting from design,
-              manufacturing, and distributing our own furniture, enabling us to
-              provide value, best service, and premium quality to our customers.
-              To ensure the finest product possible, we focus exclusively on
-              teak furniture.
-            </p>
+        <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-20">
+            <div className="relative w-full aspect-4/3 sm:aspect-16/11 lg:aspect-600/460">
+              <Image
+                src="/img/about-teak.png"
+                alt="Artisans preparing premium quality teak wood furniture"
+                fill
+                loading="eager"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="rounded-xl object-cover object-center shadow-md"
+              />
+            </div>
+
+            <div className="flex flex-col text-left">
+              <span className="text-[#056839] font-medium text-base sm:text-lg tracking-wide">
+                — Quality Craftsmanship
+              </span>
+
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#213526] sm:text-4xl">
+                About Our Teak Furniture
+              </h2>
+
+              <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#3D3D3D] lg:max-w-[90%]">
+                Gardenside is one of the teak furniture companies leading in the
+                world. Our company was established 30 years since 1993. Our
+                services include the whole process, starting from design,
+                manufacturing, and distributing our own furniture, enabling us
+                to provide value, best service, and premium quality to our
+                customers. To ensure the finest product possible, we focus
+                exclusively on teak furniture.
+              </p>
+            </div>
           </div>
         </div>
       </div>

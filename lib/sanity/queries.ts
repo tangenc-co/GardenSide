@@ -48,3 +48,4 @@ export const filterOptionsQuery = defineQuery(`{
   "spaces": *[_type == "product" && defined(space)].space
 }`);
 
+
