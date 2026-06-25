@@ -23,53 +23,70 @@ const metadata = [
       "Teak sealants keep natural oils from depleting, deploying the weathering process and protecting against UV, molding, and water damage.",
   },
 ];
+
 export function BestWayMaintenanceTeak() {
   return (
-    <div className="bg-[#EDFAF5] py-20">
-      <div className="mx-auto w-full max-w-7xl grid grid-cols-2 gap-10">
-        <div className="items-center flex justify-center">
-          <Image
-            src="/img/teak-maintenance.png"
-            alt="Teak Maintenance"
-            width={650}
-            height={420}
-            loading="eager"
-          />
-        </div>
-        <div>
-          <p className="text-[#213526] text-[40px] font-semibold">
-            The Best Way to Maintain Teak
-          </p>
-          <p className="text-[#3D3D3D]">
-            It’s generally a good idea to give your teak outdoor furniture a
-            good occasional scrub at the end of every season or whenever it
-            becomes visibly dirty.
-          </p>
-          <div>
-            {metadata.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-start gap-4 my-6 border border-[#72BF96] rounded-lg p-4 bg-white"
-              >
-                <Image
-                  src={item.icon}
-                  alt={item.title}
-                  width={24}
-                  height={24}
-                />
-                <div className="">
-                  <p className="text-[#3D3D3D] font-medium text-[16px]">
-                    {item.title}
-                  </p>
-                  <p className="text-sm text-[#212529BF] pr-7">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+    <section className="bg-[#EDFAF5] py-16 sm:py-20">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Responsive grid configuration changing states between mobile stacking and side-by-side viewports */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+          
+          {/* Showcase Image Wrapper Node */}
+          <div className="relative w-full aspect-video sm:aspect-[4/3] lg:aspect-[650/420] order-2 lg:order-1 overflow-hidden rounded-xl shadow-sm">
+            <Image
+              src="/img/teak-maintenance.png"
+              alt="Premium teak furniture undergoing protective seal treatment process"
+              fill
+              loading="eager"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover object-center"
+            />
           </div>
+
+          {/* Copy Deck content container */}
+          <div className="space-y-4 sm:space-y-6 order-1 lg:order-2">
+            <div>
+              <h2 className="text-[#213526] text-2xl sm:text-4xl font-bold tracking-tight leading-tight">
+                The Best Way to Maintain Teak
+              </h2>
+              <p className="text-[#3D3D3D] text-sm sm:text-base mt-2 sm:mt-4 leading-relaxed">
+                It’s generally a good idea to give your teak outdoor furniture a
+                good occasional scrub at the end of every season or whenever it
+                becomes visibly dirty.
+              </p>
+            </div>
+
+            {/* List Item Collection Node */}
+            <div className="space-y-4 pt-2">
+              {metadata.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex items-start gap-4 border border-[#72BF96] rounded-xl p-4 bg-white transition-all duration-300 hover:shadow-sm hover:border-[#056839]"
+                >
+                  <div className="bg-[#EDF7F1] p-2.5 rounded-lg shrink-0">
+                    <Image
+                      src={item.icon}
+                      alt={`${item.title} icon element indicator`}
+                      width={24}
+                      height={24}
+                      className="w-5 h-5 sm:w-6 sm:h-6"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="text-[#213526] font-semibold text-base sm:text-lg tracking-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#212529BF] leading-relaxed xl:pr-6">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
+    </section>
   );
 }

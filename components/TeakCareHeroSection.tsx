@@ -2,37 +2,55 @@ import Image from "next/image";
 
 export function TeakCareHeroSection() {
   return (
-    <div className="relative">
-      <Image
-        src="/img/teak-care-section.png"
-        alt="Teak Care Hero"
-        width={1920}
-        height={900}
-        className="object-cover "
-        loading="eager"
-      />
-      <div className="absolute flex items-center justify-center inset-0">
-        <div className="mx-auto w-full  max-w-6xl px-11">
-          <div className=" text-center flex flex-col gap-6">
-            <p className="font-bold leading-tight text-white text-6xl">
-              Maintaining Your Teak Furniture
-            </p>
-            <p className="max-w-full text-2xl leading-8 text-[#FFFFFFCC]">
-              Teak is protected by its own natural oils that migrate to the
-              surface of the wood. With proper care, you can maintain its
-              attractive and durable qualities for a lifetime.
-            </p>
-            <div>
-              <button className="rounded-lg bg-[#1D3A2A] px-8 py-4 font-semibold text-white transition hover:bg-[#274D38]">
-                Products Collection
-              </button>
-              <button className="rounded-lg bg-[#EDFAF5] px-8 py-4 font-semibold text-[#213526] transition hover:bg-[#D1E8D9] ml-4">
-                Get a Quote →
-              </button>
-            </div>
+    <div className="relative w-full min-h-[85vh] sm:min-h-[80vh] lg:h-[calc(100vh-4rem)] flex items-center justify-center bg-[#1D3A2A] overflow-hidden">
+      
+      {/* Performance Optimized Background Image Engine */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/img/teak-care-section.png"
+          alt="Premium quality teak wood maintenance showcase banner"
+          fill
+          priority
+          sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1280px"
+          className="object-cover object-center"
+        />
+        {/* Ambient Color Veil to enforce clear text contrast for WCAG AA criteria */}
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]" />
+      </div>
+
+      {/* Hero Typography Content Deck */}
+      <div className="relative z-10 mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8 text-center">
+        <div className="flex flex-col gap-4 sm:gap-6 items-center max-w-4xl mx-auto">
+          
+          <h1 className="font-bold tracking-tight text-white text-3xl sm:text-5xl lg:text-6xl leading-[1.15]">
+            Maintaining Your Teak Furniture
+          </h1>
+          
+          <p className="max-w-2xl text-base sm:text-lg lg:text-xl leading-relaxed text-[#FFFFFFCC]">
+            Teak is protected by its own natural oils that migrate to the
+            surface of the wood. With proper care, you can maintain its
+            attractive and durable qualities for a lifetime.
+          </p>
+          
+          {/* Action Call Targets - fluid conversion on mobile grids */}
+          <div className="mt-4 flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+            <button 
+              type="button"
+              className="w-full sm:w-auto rounded-lg bg-[#1D3A2A] px-8 py-4 text-center font-semibold text-white transition-all duration-200 hover:bg-[#274D38] shadow-md focus-visible:ring-2 focus-visible:ring-[#97CCB3] outline-none"
+            >
+              Products Collection
+            </button>
+            <button 
+              type="button"
+              className="w-full sm:w-auto rounded-lg bg-[#EDFAF5] px-8 py-4 text-center font-semibold text-[#213526] transition-all duration-200 hover:bg-[#D1E8D9] focus-visible:ring-2 focus-visible:ring-white outline-none"
+            >
+              Get a Quote →
+            </button>
           </div>
+
         </div>
       </div>
+
     </div>
   );
 }

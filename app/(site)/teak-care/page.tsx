@@ -1,5 +1,5 @@
 import { BestWayMaintenanceTeak } from "@/components/BestWayMaintenanceTeak";
-import { OutdoorFuniture } from "@/components/OutdoorFuniture";
+import { OutdoorFurniture } from "@/components/OutdoorFurniture"
 import { QAboutTeakCare } from "@/components/QAboutTeakCare";
 import { TeakCareHeroSection } from "@/components/TeakCareHeroSection";
 import { TeakCareTips } from "@/components/TeakCareTips";
@@ -8,7 +8,7 @@ export default function TeakCarePage() {
   return (
     <section>
       <TeakCareHeroSection />
-      <OutdoorFuniture />
+      <OutdoorFurniture />
       <BestWayMaintenanceTeak />
       <TeakCareTips />
       <QAboutTeakCare/>
