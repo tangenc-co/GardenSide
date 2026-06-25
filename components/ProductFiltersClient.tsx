@@ -99,7 +99,7 @@ export function ProductFiltersClient({
 
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      {/* Structural Adaptive Sidebar Flex Panel Wrapper */}
+
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start">
         
         <ProductFilters
@@ -114,12 +114,12 @@ export function ProductFiltersClient({
             <>
               <div className="mb-6 flex items-center justify-between gap-4 pb-4 border-b border-[#E5E7EB]">
                 <p className="text-sm font-medium text-[#667085]">
-                  Showing {sortedProducts.length} premium products
+                  Showing {sortedProducts.length}  products
                 </p>
                 <ProductSort value={sortValue} onValueChange={setSortValue} />
               </div>
               
-              {/* Responsive Grid Catalog Node */}
+      
               <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
                 {sortedProducts.map((product) => (
                   <ProductCard key={product._id} product={product} />

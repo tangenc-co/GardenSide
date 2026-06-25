@@ -83,7 +83,7 @@ export function ContactInfo() {
     <section className="bg-[#FAFAF8] py-12 sm:py-20">
       <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
         
-        {/* Responsive Info Grid Panels */}
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 sm:mb-28">
           {metaData.map((item) => {
             return (
@@ -115,16 +115,16 @@ export function ContactInfo() {
           — Collections
         </span>
 
-        {/* Adaptive Layout Framework Split */}
+
         <div className="mt-4 flex flex-col lg:flex-row gap-10 lg:gap-12 xl:gap-16 items-start">
           
-          {/* Form Side Control Area Container */}
+
           <div className="w-full lg:w-[60%] space-y-6 sm:space-y-8">
             <h2 className="text-[#213526] font-bold text-3xl sm:text-4xl tracking-tight">
               How Can We Help?
             </h2>
             
-            {/* Scrollable Enquiry Type Selector Deck on mobile screens */}
+    
             <div className="space-y-2">
               <span className="text-[#143D30] font-bold text-xs uppercase tracking-wider block">
                 Enquiry Type
@@ -192,7 +192,7 @@ export function ContactInfo() {
                 />
               </div>
 
-              {/* Action trigger deck container */}
+      
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <button
                   type="submit"
@@ -211,9 +211,9 @@ export function ContactInfo() {
             </form>
           </div>
 
-          {/* Map Sidebar Content Display Module */}
+   
           <div className="w-full lg:w-[40%] space-y-6 sticky top-24">
-            <div className="overflow-hidden rounded-xl border border-[#E5E7EB] relative w-full aspect-video sm:aspect-[16/10] lg:aspect-[512/320] bg-zinc-100 shadow-xs">
+            <div className="overflow-hidden rounded-xl border border-[#E5E7EB] relative w-full aspect-video sm:aspect-16/10 lg:aspect-512/320 bg-zinc-100 shadow-xs">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61094.580171403344!2d96.13251018277388!3d16.855538444976467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c193e65756baa7%3A0x36355f4d4e33e222!2sSweety%20Home%20Living%20Mall%20-%20Kyaik%20Ka%20San!5e0!3m2!1sen!2smm!4v1780732671531!5m2!1sen!2smm"
                 className="absolute inset-0 w-full h-full border-0"

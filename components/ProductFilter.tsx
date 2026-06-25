@@ -195,7 +195,7 @@ export function ProductFilters({
         {renderFilterContent()}
       </aside>
 
-      {/* Mobile Menu Slide Drawer Panel */}
+
       <div
         className={`lg:hidden fixed inset-y-0 left-0 z-50 flex w-full max-w-xs flex-col bg-white p-6 shadow-2xl transition-transform duration-300 ease-in-out border-r border-[#E5E7EB] ${
           isMobileOpen ? "translate-x-0" : "-translate-x-full"

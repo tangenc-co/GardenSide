@@ -14,8 +14,7 @@ export function ProductCard({ product }: ProductCardProps) {
     >
       <div className="flex flex-col h-full overflow-hidden rounded-xl border-[1.5px] border-[#72BF96]/60 bg-white transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:border-[#056839] group-hover:shadow-md">
         
-        {/* Responsive Fixed Ratio Image Box wrapper */}
-        <div className="relative aspect-[4/3] w-full overflow-hidden bg-zinc-100">
+        <div className="relative aspect-4/3 w-full overflow-hidden bg-zinc-100">
           <CatalogImage
             image={product.mainImage}
             width={312}
@@ -24,7 +23,7 @@ export function ProductCard({ product }: ProductCardProps) {
           />
         </div>
 
-        {/* Content Box metadata container stack */}
+
         <div className="flex flex-col flex-1 p-4 lg:p-5">
           {product.category && (
             <span className="text-xs font-semibold uppercase tracking-wider text-[#72BF96]">
@@ -36,7 +35,7 @@ export function ProductCard({ product }: ProductCardProps) {
             {product.title}
           </h3>
 
-          {/* Pricing Row container element alignment bottom */}
+
           <div className="mt-auto pt-4 flex items-center justify-between">
             {product.priceLabel && (
               <span className="text-base font-bold text-[#213526]">

@@ -14,11 +14,11 @@ export function QualityCraft() {
     <section className="bg-[#FAFAF8] py-12 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
         
-        {/* Responsive dual-column engine switching seamlessly on large screens */}
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-20 items-center">
           
-          {/* Performance Optimized Media Wrapper Box */}
-          <div className="relative w-full aspect-square sm:aspect-[4/3] lg:aspect-[650/630] overflow-hidden rounded-xl shadow-sm">
+
+          <div className="relative w-full aspect-square sm:aspect-4/3 lg:aspect-650/630 overflow-hidden rounded-xl shadow-sm">
             <Image
               src="/img/about-teak-1998.png"
               alt="Artisans oiling and crafting premium teak wood furniture frames"
@@ -29,7 +29,7 @@ export function QualityCraft() {
             />
           </div>
 
-          {/* Copy Deck Content Grid */}
+
           <div className="flex flex-col text-left space-y-4 sm:space-y-5">
             <div>
               <span className="text-[#056839] font-medium text-base sm:text-lg tracking-wide block">
