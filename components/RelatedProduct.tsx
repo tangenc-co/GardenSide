@@ -15,11 +15,11 @@ export function RelatedProducts({
 
   return (
     <section>
-     <div>
+     <div className="flex justify-between">
         <h2 className="mb-8 text-4xl font-semibold text-[#056839]">
         You May Also Like
       </h2>
-      {/* <Link href={}>View all Product </Link> */}
+      <Link href="/products" className="text-[#027A48] text-[16px] font-medium">View all Product </Link>
      </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">

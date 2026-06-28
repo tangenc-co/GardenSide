@@ -28,11 +28,11 @@ export function BestWayMaintenanceTeak() {
   return (
     <section className="bg-[#EDFAF5] py-16 sm:py-20">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Responsive grid configuration changing states between mobile stacking and side-by-side viewports */}
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           
-          {/* Showcase Image Wrapper Node */}
-          <div className="relative w-full aspect-video sm:aspect-[4/3] lg:aspect-[650/420] order-2 lg:order-1 overflow-hidden rounded-xl shadow-sm">
+
+          <div className="relative w-full aspect-video sm:aspect-4/3 lg:aspect-650/420 order-2 lg:order-1 overflow-hidden rounded-xl shadow-sm">
             <Image
               src="/img/teak-maintenance.png"
               alt="Premium teak furniture undergoing protective seal treatment process"
@@ -43,7 +43,7 @@ export function BestWayMaintenanceTeak() {
             />
           </div>
 
-          {/* Copy Deck content container */}
+
           <div className="space-y-4 sm:space-y-6 order-1 lg:order-2">
             <div>
               <h2 className="text-[#213526] text-2xl sm:text-4xl font-bold tracking-tight leading-tight">
@@ -56,7 +56,7 @@ export function BestWayMaintenanceTeak() {
               </p>
             </div>
 
-            {/* List Item Collection Node */}
+
             <div className="space-y-4 pt-2">
               {metadata.map((item) => (
                 <div

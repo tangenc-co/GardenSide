@@ -1,5 +1,6 @@
+
 import { getSanityClient } from "@/lib/sanity/client";
-import { filterOptionsQuery, productBySlugQuery, productsListQuery } from "@/lib/sanity/queries";
+import { filterOptionsQuery, productBySlugQuery, productsListQuery, relatedProductsQuery } from "@/lib/sanity/queries";
 import type { ProductDetail, ProductListItem } from "@/types/catalog";
 
 async function safeFetch<T>(fn: () => Promise<T>, fallback: T): Promise<T> {
@@ -9,9 +10,9 @@ async function safeFetch<T>(fn: () => Promise<T>, fallback: T): Promise<T> {
     return fallback;
   }
 }
-
-export async function getProductsList(): Promise<ProductListItem[] | null> {
   const client = getSanityClient();
+export async function getProductsList(): Promise<ProductListItem[] | null> {
+
   if (!client) return null;
   return safeFetch(
     async () => {
@@ -23,7 +24,7 @@ export async function getProductsList(): Promise<ProductListItem[] | null> {
 }
 
 export async function getProductBySlug(slug: string): Promise<ProductDetail | null> {
-  const client = getSanityClient();
+
   if (!client) return null;
   return safeFetch(
     () => client.fetch<ProductDetail | null>(productBySlugQuery, { slug }),
@@ -32,7 +33,7 @@ export async function getProductBySlug(slug: string): Promise<ProductDetail | nu
 }
 
 export async function getAllProductSlugs(): Promise<string[]> {
-  const client = getSanityClient();
+ 
   if (!client) return [];
   return safeFetch(
     async () => {
@@ -52,8 +53,28 @@ export type FilterOptions = {
   spaces: string[];
 };
 
+export async function getRelatedProducts(
+  categoryId: string | undefined,
+  slug: string
+): Promise<ProductListItem[]> {
+
+
+  if (!client) return [];
+
+  return safeFetch(
+   async () =>
+     await client.fetch<ProductListItem[]>(
+        relatedProductsQuery,
+        {
+          categoryId,
+          slug,
+        }
+      ),
+    []
+  );
+}
 export async function getFilterOptions(): Promise<FilterOptions | null> {
-  const client = getSanityClient();
+
   if (!client) return null;
   return safeFetch(
     () => client.fetch<FilterOptions>(filterOptionsQuery),

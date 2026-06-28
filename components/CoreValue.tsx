@@ -44,7 +44,7 @@ export function CoreValue() {
     <section className="bg-[#EDFAF5] py-16 sm:py-24">
       <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
         
-        {/* Header Section */}
+
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="uppercase text-[#056839] font-medium text-base sm:text-lg tracking-wide block">
             — What Drives Us
@@ -58,7 +58,7 @@ export function CoreValue() {
           </p>
         </div>
 
-        {/* Adaptive Dynamic Grid Layout */}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-12 sm:mt-16">
           {metadata.map((item) => (
             <div 
@@ -77,7 +77,7 @@ export function CoreValue() {
                   />
                 </div>
                 
-                {/* Text Block Content */}
+
                 <div className="space-y-2 flex-1 flex flex-col">
                   <h3 className="text-[#143D30] font-semibold text-base sm:text-lg tracking-tight group-hover:text-[#056839] transition-colors">
                     {item.title}

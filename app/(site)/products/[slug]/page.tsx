@@ -1,9 +1,7 @@
-import { CatalogImage } from "@/components/CatalogImage";
-import { PortableBody } from "@/components/PortableBody";
-import { getAllProductSlugs, getProductBySlug } from "@/lib/sanity/fetch";
+
+import { getAllProductSlugs, getProductBySlug, getRelatedProducts } from "@/lib/sanity/fetch";
 import { getSanityProjectId } from "@/sanity/env";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SetupCallout } from "@/components/SetupCallout";
 import { ProductDetailPage } from "@/components/ProductDetailPage";
@@ -51,9 +49,17 @@ export default async function ProductPage(props: Props) {
     notFound();
   }
 
+
+
+const relatedProducts = await getRelatedProducts(
+  product.category?._id,
+  product.slug
+);
+
+
   return (
     <main className="flex-1 w-full">
-      <ProductDetailPage product={product} />
+      <ProductDetailPage product={product}  relatedProducts = {relatedProducts}/>
     </main>
   );
 }

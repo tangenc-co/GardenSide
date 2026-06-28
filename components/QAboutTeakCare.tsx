@@ -13,8 +13,7 @@ export function QAboutTeakCare() {
             pieces or choosing the right SEMCO maintenance products for your
             garden environment.
           </p>
-          
-          {/* Action button container cluster - fluid responsive stacking mechanics */}
+      
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 font-medium text-sm text-[#FEFEFE] uppercase">
             <button 
               type="button"

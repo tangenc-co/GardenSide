@@ -14,7 +14,7 @@ export function HeroSection() {
           className="object-cover object-center"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent sm:from-black/70 sm:via-black/50" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/40 to-transparent sm:from-black/70 sm:via-black/50" />
       </div>
 
 

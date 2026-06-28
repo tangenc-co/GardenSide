@@ -76,7 +76,7 @@ export function UseGradeTeak() {
           </div>
 
           {/* Performance Optimized Aspect-Ratio Background Media Area */}
-          <div className="relative w-full aspect-square sm:aspect-[4/3] lg:aspect-[650/630] order-1 lg:order-2 overflow-hidden rounded-xl shadow-xs">
+          <div className="relative w-full aspect-square sm:aspect-4/3 lg:aspect-650/630 order-1 lg:order-2 overflow-hidden rounded-xl shadow-xs">
             <Image
               src="/img/cat-funiture.png"
               alt="Close up view detailing premium quality tight grain of Grade A timber wood"

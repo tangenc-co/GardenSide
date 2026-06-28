@@ -1,4 +1,4 @@
-import { ProductDetail } from "@/types/catalog";
+import { ProductDetail, ProductListItem } from "@/types/catalog";
 import { ProductBreadcrumb } from "@/components/ProductBreadCrumb";
 import { ProductGallery } from "@/components/ProductGallery";
 import { ProductInformation } from "@/components/ProductInformation";
@@ -6,9 +6,11 @@ import { RelatedProducts } from "./RelatedProduct";
 
 type ProductDetailPageProps = {
   product: ProductDetail;
+    relatedProducts: ProductListItem[];
 };
 
-export function ProductDetailPage({ product }: ProductDetailPageProps) {
+
+export function ProductDetailPage({ product, relatedProducts }: ProductDetailPageProps) {
   const images = product.mainImage?.url 
     ? [product.mainImage.url, ...(product.gallery?.map(g => g.url).filter((url): url is string => Boolean(url)) || [])] 
     : [];
@@ -33,7 +35,7 @@ export function ProductDetailPage({ product }: ProductDetailPageProps) {
 
       <div className="mt-20">
         <RelatedProducts
-          products={[]}
+          products={relatedProducts}
         />
       </div>
     </section>

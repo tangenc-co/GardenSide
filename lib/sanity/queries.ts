@@ -48,4 +48,24 @@ export const filterOptionsQuery = defineQuery(`{
   "spaces": *[_type == "product" && defined(space)].space
 }`);
 
-
+export const relatedProductsQuery = `
+  *[
+    _type == "product" &&
+    category._ref == $categoryId &&
+    slug.current != $slug
+  ][0...4]{
+    _id,
+    title,
+    "slug": slug.current,
+    priceLabel,
+    shortDescription,
+    material,
+    space,
+    mainImage,
+    category->{
+      _id,
+      title,
+      "slug": slug.current
+    }
+  }
+`;

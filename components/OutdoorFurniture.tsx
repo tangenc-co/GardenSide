@@ -4,7 +4,7 @@ export function OutdoorFurniture() {
   return (
     <section className="bg-[#F5F5F5] py-16 sm:py-24 lg:py-32">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Switched grid configuration from fixed cols-2 to mobile-first system */}
+   
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           
           {/* Copy Deck Stack */}
@@ -45,8 +45,8 @@ export function OutdoorFurniture() {
             </div>
           </div>
 
-          {/* Performance Optimized Responsive Image Box */}
-          <div className="relative w-full aspect-square sm:aspect-[4/3] lg:aspect-[650/630] overflow-hidden rounded-xl shadow-sm">
+       
+          <div className="relative w-full aspect-square sm:aspect-4/3 lg:aspect-650/630 overflow-hidden rounded-xl shadow-sm">
             <Image
               src="/img/cat-funiture.png"
               alt="Premium teak outdoor furniture care tutorial guide"

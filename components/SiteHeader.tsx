@@ -52,7 +52,7 @@ export function SiteHeader() {
             alt="Garden Side Logo" 
             width={120} 
             height={40} 
-            className="w-auto h-8 sm:h-10 object-contain" 
+            className="w-auto h-auto  object-contain" 
             priority
           />
         </Link>
