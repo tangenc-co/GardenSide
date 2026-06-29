@@ -6,7 +6,7 @@ import { RelatedProducts } from "./RelatedProduct";
 
 type ProductDetailPageProps = {
   product: ProductDetail;
-    relatedProducts: ProductListItem[];
+  relatedProducts: ProductListItem[];
 };
 
 

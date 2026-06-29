@@ -14,7 +14,7 @@ export function ProductHeroSection() {
           className="object-cover object-center"
         />
 
-        <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/30 to-transparent sm:from-black/70 sm:via-black/40" />
+          <div className="absoute inset-0 bg-[#1C1917]"></div>
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">

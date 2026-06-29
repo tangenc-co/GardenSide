@@ -14,8 +14,7 @@ export function AboutUsHeroSection() {
           sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1280px"
           className="object-cover object-center"
         />
-
-        <div className="absolute inset-0 bg-black/55 backdrop-blur-[0.5px]" />
+        <div className="absoute inset-0 bg-[#1C1917]"></div>
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 lg:px-8 text-center">

@@ -34,6 +34,9 @@ export function ProductFilters({
   searchQuery,
   onSearchChange,
 }: ProductFiltersProps) {
+
+
+  
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState<SelectedFiltersState>({
     category: [],

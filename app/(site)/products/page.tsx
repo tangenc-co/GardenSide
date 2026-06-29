@@ -1,5 +1,5 @@
-import { ProductCard } from "@/components/ProductCard";
-import { getProductsList, getFilterOptions, type FilterOptions } from "@/lib/sanity/fetch";
+
+import { getProductsList, getFilterOptions} from "@/lib/sanity/fetch";
 import { getSanityProjectId } from "@/sanity/env";
 import { ProductFiltersClient } from "@/components/ProductFiltersClient";
 import { ProductHeroSection } from "@/components/ProductHeroSection";

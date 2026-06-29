@@ -30,8 +30,8 @@ export function ProductFiltersClient({
         .includes(searchQuery.toLowerCase());
       const matchesCategory =
         filters.category.length === 0 ||
-        (product.category?.title &&
-          filters.category.includes(product.category.title));
+        (product.category?.slug &&
+          filters.category.includes(product.category.slug));
       const matchesMaterial =
         filters.material.length === 0 ||
         (product.material && filters.material.includes(product.material));

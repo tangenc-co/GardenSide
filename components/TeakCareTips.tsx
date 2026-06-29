@@ -88,8 +88,6 @@ export function TeakCareTips() {
   return (
     <section className="bg-[#FAFAF8] py-16 sm:py-20">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        {/* Main Content Grid Stacked by default, splitting on medium viewports */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 items-stretch">
           {metadata.map((item) => (
             <div
@@ -116,7 +114,7 @@ export function TeakCareTips() {
           ))}
         </div>
 
-        {/* Global Warning Callout Box Node */}
+
         <div className="bg-[#DC2626]/5 border border-[#DC2626]/20 rounded-xl p-5 sm:p-8 mt-8 sm:mt-12 flex flex-col gap-4 sm:gap-6 items-start lg:items-center">
           <div className="flex items-center gap-2.5">
             <Image
