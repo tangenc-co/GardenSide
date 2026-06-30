@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
+
 const formFields = [
   {
     id: "name",
@@ -77,13 +78,65 @@ const tabs = [
 ];
 
 export function ContactInfo() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({ type: "", text: "" });
   const [activeTab, setActiveTab] = useState(1);
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus({ type: "", text: "" });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setStatus({
+          type: "success",
+          text: " Message sent successfully! We will get back to you soon.",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        setStatus({
+          type: "error",
+          text: result.message || "Something went wrong. Please try again.",
+        });
+      }
+    } catch (error) {
+      setStatus({
+        type: "error",
+        text: "Could not connect to the mail server.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <section className="bg-[#FAFAF8] py-12 sm:py-20">
       <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
-        
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 sm:mb-28">
           {metaData.map((item) => {
             return (
@@ -93,13 +146,23 @@ export function ContactInfo() {
               >
                 <div className="flex flex-col items-center space-y-2 w-full">
                   <div className="rounded-full bg-[#EDFAF5] w-12 h-12 flex items-center justify-center shrink-0">
-                    <Image src={item.icon} alt="" width={22} height={22} className="w-5.5 h-5.5" />
+                    <Image
+                      src={item.icon}
+                      alt=""
+                      width={22}
+                      height={22}
+                      className="w-5.5 h-5.5"
+                    />
                   </div>
                   <h3 className="text-[#143D30] text-base font-semibold tracking-tight pt-1">
                     {item.title}
                   </h3>
-                  <p className="text-[#7A7A7A] text-sm leading-none">{item.desc1}</p>
-                  <p className="text-[#7A7A7A] text-sm leading-none">{item.desc2}</p>
+                  <p className="text-[#7A7A7A] text-sm leading-none">
+                    {item.desc1}
+                  </p>
+                  <p className="text-[#7A7A7A] text-sm leading-none">
+                    {item.desc2}
+                  </p>
                 </div>
                 {item.route && (
                   <span className="text-[#056839] text-sm font-semibold tracking-wide hover:underline cursor-pointer block pt-1">
@@ -115,16 +178,12 @@ export function ContactInfo() {
           — Collections
         </span>
 
-
         <div className="mt-4 flex flex-col lg:flex-row gap-10 lg:gap-12 xl:gap-16 items-start">
-          
-
           <div className="w-full lg:w-[60%] space-y-6 sm:space-y-8">
             <h2 className="text-[#213526] font-bold text-3xl sm:text-4xl tracking-tight">
               How Can We Help?
             </h2>
-            
-    
+
             <div className="space-y-2">
               <span className="text-[#143D30] font-bold text-xs uppercase tracking-wider block">
                 Enquiry Type
@@ -137,9 +196,10 @@ export function ContactInfo() {
                         type="button"
                         onClick={() => setActiveTab(data.id)}
                         className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 outline-none whitespace-nowrap
-                          ${activeTab === data.id 
-                            ? "bg-[#1E3D2F] text-white border border-[#1E3D2F] shadow-xs" 
-                            : "bg-[#F8F5EF] text-[#143D30] border border-[#97CCB3]/60 hover:bg-[#E5E7EB]/30"
+                          ${
+                            activeTab === data.id
+                              ? "bg-[#1E3D2F] text-white border border-[#1E3D2F] shadow-xs"
+                              : "bg-[#F8F5EF] text-[#143D30] border border-[#97CCB3]/60 hover:bg-[#E5E7EB]/30"
                           }`}
                       >
                         {data.description}
@@ -150,7 +210,7 @@ export function ContactInfo() {
               </div>
             </div>
 
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid gap-5 grid-cols-1 sm:grid-cols-2">
                 {formFields.map((field) => (
                   <div key={field.id} className="space-y-2">
@@ -163,11 +223,12 @@ export function ContactInfo() {
                         <span className="ml-1 text-red-500">*</span>
                       )}
                     </label>
-
                     <input
                       id={field.id}
                       type={field.type}
                       placeholder={field.placeholder}
+                      value={formData[field.id as keyof typeof formData] || ""}
+                      onChange={handleInputChange}
                       className="w-full rounded-md border-[1.5px] border-[#97CCB3]/70 px-4 py-3 text-sm outline-none focus:border-[#056839] bg-white transition-colors placeholder-[#7A7A7A] text-[#143D30]"
                       required={field.required}
                     />
@@ -187,21 +248,29 @@ export function ContactInfo() {
                   id="message"
                   rows={5}
                   placeholder="Tell us about your enquiry, your garden space, or any specific requirements..."
+                  value={formData.message}
+                  onChange={handleInputChange}
                   className="w-full rounded-md border-[1.5px] border-[#97CCB3]/70 px-4 py-3 text-sm outline-none focus:border-[#056839] bg-white transition-colors placeholder-[#7A7A7A] text-[#143D30] resize-y"
                   required
                 />
               </div>
-
-      
+              {status.text && (
+                <div
+                  className={`p-4 rounded-md text-sm font-medium ${status.type === "success" ? "bg-green-50 text-green-800 border border-green-200" : "bg-red-50 text-red-800 border border-red-200"}`}
+                >
+                  {status.text}
+                </div>
+              )}
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <button
                   type="submit"
-                  className="w-full sm:w-auto rounded-lg bg-[#1E3D2F] px-6 py-3.5 text-sm font-semibold text-white tracking-wide shadow-sm hover:bg-[#152a20] transition-colors text-center"
+                  disabled={loading}
+                  className={`w-full sm:w-auto rounded-lg bg-[#1E3D2F] px-6 py-3.5 text-sm font-semibold text-white tracking-wide shadow-sm hover:bg-[#152a20] transition-colors text-center ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
-                  Send Message
+                  {loading ? "Sending Message..." : "Send Message"}
                 </button>
 
-                <button 
+                <button
                   type="button"
                   className="w-full sm:w-auto rounded-lg bg-[#EDFAF5] px-6 py-3.5 text-sm font-semibold text-[#213526] border border-[#97CCB3]/30 hover:bg-[#D1E8D9] transition-colors text-center"
                 >
@@ -211,7 +280,6 @@ export function ContactInfo() {
             </form>
           </div>
 
-   
           <div className="w-full lg:w-[40%] space-y-6 sticky top-24">
             <div className="overflow-hidden rounded-xl border border-[#E5E7EB] relative w-full aspect-video sm:aspect-16/10 lg:aspect-512/320 bg-zinc-100 shadow-xs">
               <iframe
@@ -222,7 +290,7 @@ export function ContactInfo() {
                 allowFullScreen
               />
             </div>
-            
+
             <div className="rounded-xl border border-[#97CCB3]/60 bg-[#EDFAF5] p-5 sm:p-6 space-y-4">
               <div className="space-y-2">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-[#056839] block">
@@ -248,7 +316,6 @@ export function ContactInfo() {
               </button>
             </div>
           </div>
-
         </div>
       </div>
     </section>
