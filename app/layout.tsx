@@ -25,6 +25,46 @@ export const metadata: Metadata = {
     template: "%s | Garden Side",
   },
   description: "Furniture and interiors — product catalog. Online shopping coming later.",
+  metadataBase: new URL('https://gardenside.com'),
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://gardenside.com',
+    siteName: 'Garden Side',
+    title: 'Garden Side | Furniture catalog',
+    description: 'Furniture and interiors — product catalog. Online shopping coming later.',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Garden Side Furniture',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Garden Side | Furniture catalog',
+    description: 'Furniture and interiors — product catalog. Online shopping coming later.',
+    images: ['/og-image.jpg'],
+    creator: '@gardenside',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    // Add your verification codes when available
+    // google: 'your-google-verification-code',
+    // yandex: 'your-yandex-verification-code',
+  },
 };
 
 export default function RootLayout({

@@ -11,6 +11,14 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Collection | Garden Side",
   description: "Browse our furniture and interior pieces.",
+  openGraph: {
+    type: 'website',
+    title: 'Collection | Garden Side',
+    description: 'Browse our furniture and interior pieces.',
+  },
+  alternates: {
+    canonical: '/products',
+  },
 };
 
 export default async function ProductsPage() {
