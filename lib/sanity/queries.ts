@@ -69,3 +69,13 @@ export const relatedProductsQuery = `
     }
   }
 `;
+
+export const categoryListQuery = defineQuery(`
+  *[_type == "category"] | order(title asc){
+    _id,
+    title,
+    "slug": slug.current,
+    "image": image${imageFields},
+    subtitle
+  }
+`);

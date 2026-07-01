@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -35,6 +38,45 @@ const footerSections = [
 ];
 
 export function SiteFooter() {
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState({ type: "", text: "" });
+
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus({ type: "", text: "" });
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+      console.log("Email", data);
+
+if (!response.ok || data.success === false || data.data?.error) {
+  
+  const resendError = data.data?.error?.message || data.message || "Subscription failed.";
+  
+  setStatus({
+    type: "error",
+    text: resendError,
+  });
+} else {
+  setStatus({
+    type: "success",
+    text: "Thank you for subscribing!",
+  });
+}
+    } catch (error) {
+      setStatus({ type: "error", text: "Connection failed." });
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <footer className="mt-auto border-t border-[#E5E7EB] bg-[#213526] text-white">
       <div className="mx-auto max-w-7xl px-6 py-12">
@@ -54,7 +96,12 @@ export function SiteFooter() {
                     aria-label={social.alt}
                     className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-600 transition  hover:text-[#213526]"
                   >
-                    <Image src={social.icon} alt={social.alt} width={24} height={24} />
+                    <Image
+                      src={social.icon}
+                      alt={social.alt}
+                      width={24}
+                      height={24}
+                    />
                   </Link>
                 </li>
               ))}
@@ -92,22 +139,67 @@ export function SiteFooter() {
               Subscribe for new arrivals, teak care tips, and exclusive offers.
             </p>
 
-            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="w-full rounded-md border border-gray-600 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-gray-400 focus:border-white"
-              />
+            <form
+              onSubmit={handleSubscribe}
+              className="mt-5 flex flex-col gap-3"
+            >
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  value={email}
+                  required
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full rounded-md border border-gray-600 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-gray-400 focus:border-white text-white"
+                />
 
-              <button className="rounded-md bg-white px-5 py-3 text-sm font-medium text-[#213526] transition hover:bg-gray-200">
-                SUBSCRIBE
-              </button>
-            </div>
+                <button
+                  className={`rounded-md bg-white px-5 py-3 text-sm font-medium text-[#213526] transition hover:bg-gray-200 ${
+                    loading ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  type="submit"
+                  disabled={loading}
+                >
+                  {loading ? "JOINING..." : "SUBSCRIBE"}
+                </button>
+              </div>
+            </form>
+            {status.text && (
+              <p
+                className={`text-xs font-semibold ${status.type === "success" ? "text-green-700" : "text-red-600"}`}
+              >
+                {status.text}
+              </p>
+            )}
 
             <div className="mt-6 space-y-2 text-sm text-gray-300">
-              <p className="flex items-center gap-2"><Image src="/icon/map.svg" alt="Location" width={24} height={24} /> 12 Garden Lane, Chelsea, London SW3 4BH</p>
-              <p className="flex items-center gap-2"><Image src="/icon/phone.svg" alt="Phone" width={24} height={24} /> +44 (0)20 1234 5678</p>
-              <p className="flex items-center gap-2"><Image src="/icon/envelop.svg" alt="Email" width={24} height={24} /> hello@gardenside.com</p>
+              <p className="flex items-center gap-2">
+                <Image
+                  src="/icon/map.svg"
+                  alt="Location"
+                  width={24}
+                  height={24}
+                />{" "}
+                12 Garden Lane, Chelsea, London SW3 4BH
+              </p>
+              <p className="flex items-center gap-2">
+                <Image
+                  src="/icon/phone.svg"
+                  alt="Phone"
+                  width={24}
+                  height={24}
+                />{" "}
+                +44 (0)20 1234 5678
+              </p>
+              <p className="flex items-center gap-2">
+                <Image
+                  src="/icon/envelop.svg"
+                  alt="Email"
+                  width={24}
+                  height={24}
+                />{" "}
+                hello@gardenside.com
+              </p>
             </div>
           </div>
         </div>

@@ -10,14 +10,10 @@ export type CategoryRef = {
   _id: string;
   title: string;
   slug: string;
+  image:ProductImage,
+  subtitle:string
 };
-// export type CategoryRef {
-//   _id: string;
-//   title: string;
-//   slug: string;
-//   image: string;
-//   subtitle: string;
-// }
+
 
 export type ProductListItem = {
   _id: string;

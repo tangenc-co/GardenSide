@@ -4,9 +4,13 @@ import {
   productBySlugQuery,
   productsListQuery,
   relatedProductsQuery,
-
+  categoryListQuery
 } from "@/lib/sanity/queries";
-import type { ProductDetail, ProductListItem, CategoryRef } from "@/types/catalog";
+import type {
+  ProductDetail,
+  ProductListItem,
+  CategoryRef,
+} from "@/types/catalog";
 
 async function safeFetch<T>(fn: () => Promise<T>, fallback: T): Promise<T> {
   try {
@@ -75,14 +79,14 @@ export async function getFilterOptions(): Promise<FilterOptions | null> {
   });
 }
 
-export async function getCategoryList():Promise <CategoryRef[] | null> {
-  if(!client) return null;
-  
-  return client.fetch(`
-    *[_type == "category"] {
-      _id,
-      title,
-      "slug": slug.current
-    }
-  `);
+
+export async function getCategoryList(): Promise<CategoryRef[] | null> {
+  const client = getSanityClient();
+
+  if (!client) return null;
+
+  return safeFetch(
+    () => client.fetch<CategoryRef[]>(categoryListQuery),
+    []
+  );
 }
