@@ -1,10 +1,11 @@
 import { getSanityProjectId } from "@/sanity/env";
 import { HeroSection } from "@/components/HeroSection";
 import { Purpose } from "@/components/Purpose";
-import { getCategoryList } from "@/lib/sanity/fetch";
+import { getCategoryList,getPopularProducts } from "@/lib/sanity/fetch";
 import { ShopByCategory } from "@/components/ShopByCategory";
 import { JsonLd } from "@/components/JsonLd";
 import type { Metadata } from "next";
+import { PopularProduct } from "@/components/PopularProduct";
 
 export const revalidate = 60;
 
@@ -32,6 +33,9 @@ export default async function HomePage() {
   const hasSanity = Boolean(getSanityProjectId());
   
   const categories = hasSanity ? (await getCategoryList()) ?? [] : [];
+  const popularProducts = hasSanity ? (await getPopularProducts())??[]:[];
+
+  
 
   const organizationJsonLd = {
     '@context': 'https://schema.org',
@@ -84,9 +88,13 @@ export default async function HomePage() {
 
       <Purpose />
 
-      {/* Conditionally render the category section only if data exists */}
+      
       {categories.length > 0 && (
         <ShopByCategory categories={categories} />
+      )}
+
+      {popularProducts.length >0 && (
+        <PopularProduct popularProducts={popularProducts}/>
       )}
     </section>
   );

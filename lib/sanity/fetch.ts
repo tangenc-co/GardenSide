@@ -4,7 +4,8 @@ import {
   productBySlugQuery,
   productsListQuery,
   relatedProductsQuery,
-  categoryListQuery
+  categoryListQuery,
+  popularProductsQuery
 } from "@/lib/sanity/queries";
 import type {
   ProductDetail,
@@ -87,6 +88,16 @@ export async function getCategoryList(): Promise<CategoryRef[] | null> {
 
   return safeFetch(
     () => client.fetch<CategoryRef[]>(categoryListQuery),
+    []
+  );
+}
+export async function getPopularProducts(): Promise<ProductListItem[] | null> {
+  const client = getSanityClient();
+
+  if (!client) return null;
+
+  return safeFetch(
+    () => client.fetch<ProductListItem[]>(popularProductsQuery),
     []
   );
 }

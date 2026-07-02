@@ -15,7 +15,7 @@ const [left, middle, topRight, bottomRight] = categories;
   return (
     <section className="bg-[#EDFAF5] py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+ 
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
             <p className="text-lg font-medium uppercase text-[#056839]">

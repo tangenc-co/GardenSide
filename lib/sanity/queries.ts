@@ -71,11 +71,37 @@ export const relatedProductsQuery = `
 `;
 
 export const categoryListQuery = defineQuery(`
-  *[_type == "category"] | order(title asc){
+  *[
+  _type == "category" &&
+   displaySection == "shopByCategory"
+] | order(title asc){
     _id,
     title,
     "slug": slug.current,
     "image": image${imageFields},
     subtitle
   }
+`);
+export const popularProductsQuery = defineQuery(`
+*[
+  _type == "product" &&
+   displaySection == "popularPieces"
+]
+| order(_createdAt desc){
+  _id,
+  title,
+  "slug": slug.current,
+  shortDescription,
+  priceLabel,
+  material,
+  space,
+
+  category->{
+    _id,
+    title,
+    "slug": slug.current
+  },
+
+  "mainImage": mainImage${imageFields}
+}
 `);

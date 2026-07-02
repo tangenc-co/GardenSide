@@ -153,6 +153,7 @@ async function createSampleProducts() {
             body: [
               {
                 _type: "block",
+                _key: crypto.randomUUID(),
                 children: [{ _type: "span", text: product.shortDescription }],
               },
             ],

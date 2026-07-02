@@ -30,6 +30,20 @@ export const category = defineType({
       title: "Subtitle",
     }),
     defineField({
+      name: "displaySection",
+      title: "Display Section",
+      type: "string",
+      options: {
+        list: [
+          {
+            title: "Shop By Category",
+            value: "shopByCategory",
+          },
+        ],
+        layout: "radio",
+      },
+    }),
+    defineField({
       name: "image",
       title: "Category Image",
       type: "image",

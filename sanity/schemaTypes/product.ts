@@ -48,7 +48,19 @@ export const product = defineType({
       name: "body",
       type: "array",
       title: "Details",
-      of: [{ type: "block" }],
+      of: [
+        {
+          type: "block",
+          styles: [
+            { title: "Normal", value: "normal" },
+            { title: "Bullet (Fallback)", value: "bullet" },
+          ],
+          lists: [
+            { title: "Bullet List", value: "bullet" },
+            { title: "Numbered List", value: "number" },
+          ],
+        },
+      ],
     }),
     defineField({
       name: "priceLabel",
@@ -56,6 +68,20 @@ export const product = defineType({
       title: "Price (display only)",
       description:
         "E.g. “From $1,200” or “$899”. The storefront is view-only; no checkout yet.",
+    }),
+    defineField({
+      name: "displaySection",
+      title: "Display Section",
+      type: "string",
+      options: {
+        list: [
+          {
+            title: "Popular Pieces",
+            value: "popularPieces",
+          },
+        ],
+        layout:"radio",
+      },
     }),
     defineField({
       name: "mainImage",

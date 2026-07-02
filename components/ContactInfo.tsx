@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useState } from "react";
 
-
 const formFields = [
   {
     id: "name",
@@ -71,10 +70,10 @@ const metaData = [
 ];
 
 const tabs = [
-  { id: 1, description: "General Enquiry" },
-  { id: 2, description: "Product Question" },
-  { id: 3, description: "Request a Quote" },
-  { id: 4, description: "Teak Care Service" },
+  { id: 1, description: "General Enquiry", value: "general" },
+  { id: 2, description: "Product Question", value: "product" },
+  { id: 3, description: "Request a Quote", value: "quote" },
+  { id: 4, description: "Teak Care Service", value: "teak-care" },
 ];
 
 export function ContactInfo() {
@@ -84,10 +83,11 @@ export function ContactInfo() {
     phone: "",
     subject: "",
     message: "",
+    enquiryType: tabs[0].value,
   });
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState({ type: "", text: "" });
-  const [activeTab, setActiveTab] = useState(1);
+  const [activeTab, setActiveTab] = useState(tabs[0].id);
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -118,7 +118,10 @@ export function ContactInfo() {
           phone: "",
           subject: "",
           message: "",
+          enquiryType: tabs[0].value,
         });
+
+        console.log(formData);
       } else {
         setStatus({
           type: "error",
@@ -134,6 +137,7 @@ export function ContactInfo() {
       setLoading(false);
     }
   };
+  
   return (
     <section className="bg-[#FAFAF8] py-12 sm:py-20">
       <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
@@ -183,34 +187,36 @@ export function ContactInfo() {
             <h2 className="text-[#213526] font-bold text-3xl sm:text-4xl tracking-tight">
               How Can We Help?
             </h2>
-
-            <div className="space-y-2">
-              <span className="text-[#143D30] font-bold text-xs uppercase tracking-wider block">
-                Enquiry Type
-              </span>
-              <div className="flex items-center gap-3 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none snap-x">
-                {tabs.map((data) => {
-                  return (
-                    <div key={data.id} className="snap-contained shrink-0">
-                      <button
-                        type="button"
-                        onClick={() => setActiveTab(data.id)}
-                        className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 outline-none whitespace-nowrap
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <span className="text-[#143D30] font-bold text-xs uppercase tracking-wider block">
+                  Enquiry Type
+                </span>
+                <div className="flex items-center gap-3 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none snap-x">
+                  {tabs.map((data) => {
+                    return (
+                      <div key={data.id} className="snap-contained shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setActiveTab(data.id);
+                            setFormData({...formData,enquiryType:data.value})
+                          }}
+                          className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 outline-none whitespace-nowrap
                           ${
                             activeTab === data.id
                               ? "bg-[#1E3D2F] text-white border border-[#1E3D2F] shadow-xs"
                               : "bg-[#F8F5EF] text-[#143D30] border border-[#97CCB3]/60 hover:bg-[#E5E7EB]/30"
                           }`}
-                      >
-                        {data.description}
-                      </button>
-                    </div>
-                  );
-                })}
+                        >
+                          {data.description}
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid gap-5 grid-cols-1 sm:grid-cols-2">
                 {formFields.map((field) => (
                   <div key={field.id} className="space-y-2">
