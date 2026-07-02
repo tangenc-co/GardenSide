@@ -23,6 +23,7 @@ type SelectedFiltersState = {
 
 interface ProductFiltersProps {
   filterOptions: FilterGroup[] | null;
+  activeFilters: SelectedFiltersState;
   onFilterChange: (filters: SelectedFiltersState) => void;
   searchQuery: string;
   onSearchChange: (query: string) => void;
@@ -30,6 +31,7 @@ interface ProductFiltersProps {
 
 export function ProductFilters({
   filterOptions,
+  activeFilters,
   onFilterChange,
   searchQuery,
   onSearchChange,
@@ -38,35 +40,43 @@ export function ProductFilters({
 
   
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [selectedFilters, setSelectedFilters] = useState<SelectedFiltersState>({
-    category: [],
-    material: [],
-    space: [],
-  });
+  // const [selectedFilters, setSelectedFilters] = useState<SelectedFiltersState>({
+  //   category: [],
+  //   material: [],
+  //   space: [],
+  // });
 
   const handleFilterToggle = (group: keyof SelectedFiltersState, label: string) => {
-    const newFilters = { ...selectedFilters };
+    const newFilters = { 
+      category: [...activeFilters.category],
+      material: [...activeFilters.material],
+      space: [...activeFilters.space]
+    };
+    // const newFilters = { ...selectedFilters };
     const index = newFilters[group].indexOf(label);
     if (index > -1) {
       newFilters[group].splice(index, 1);
     } else {
       newFilters[group].push(label);
     }
-    setSelectedFilters(newFilters);
+    // setSelectedFilters(newFilters);
     onFilterChange(newFilters);
   };
 
   const handleClearAll = () => {
     const cleared = { category: [], material: [], space: [] };
-    setSelectedFilters(cleared);
+    // setSelectedFilters(cleared);
     onFilterChange(cleared);
     onSearchChange("");
   };
-
-  const activeFiltersCount = 
-    selectedFilters.category.length + 
-    selectedFilters.material.length + 
-    selectedFilters.space.length;
+const activeFiltersCount = 
+    activeFilters.category.length + 
+    activeFilters.material.length + 
+    activeFilters.space.length;
+  // const activeFiltersCount = 
+  //   selectedFilters.category.length + 
+  //   selectedFilters.material.length + 
+  //   selectedFilters.space.length;
 
 
   const renderFilterContent = () => (
@@ -128,7 +138,7 @@ export function ProductFilters({
                   if (!groupKey) return null;
 
                   const uniqueInputId = `${group.title}-${option.label}`.replace(/\s+/g, "-").toLowerCase();
-                  const isChecked = selectedFilters[groupKey].includes(option.label);
+                  const isChecked = activeFilters[groupKey].includes(option.label);
 
                   return (
                     <div key={option.label} className="flex items-center justify-between group py-0.5">

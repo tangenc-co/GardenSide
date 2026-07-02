@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductFilters } from "@/components/ProductFilter";
 import { ProductSort } from "@/components/ProductSort";
@@ -30,8 +30,8 @@ export function ProductFiltersClient({
         .includes(searchQuery.toLowerCase());
       const matchesCategory =
         filters.category.length === 0 ||
-        (product.category?.slug &&
-          filters.category.includes(product.category.slug));
+        (product.category?.title &&
+          filters.category.includes(product.category.title));
       const matchesMaterial =
         filters.material.length === 0 ||
         (product.material && filters.material.includes(product.material));
@@ -39,7 +39,9 @@ export function ProductFiltersClient({
         filters.space.length === 0 ||
         (product.space && filters.space.includes(product.space));
 
-      return matchesSearch && matchesCategory && matchesMaterial && matchesSpace;
+      return (
+        matchesSearch && matchesCategory && matchesMaterial && matchesSpace
+      );
     });
   }, [allProducts, searchQuery, filters]);
 
@@ -48,17 +50,22 @@ export function ProductFiltersClient({
     return [
       {
         title: "Category",
-        options: Array.from(new Set(filterOptions.categories || [])).map((c) => ({
-          label: c,
-          count: allProducts?.filter((p) => p.category?.title === c).length || 0,
-        })),
+        options: Array.from(new Set(filterOptions.categories || [])).map(
+          (c) => ({
+            label: c,
+            count:
+              allProducts?.filter((p) => p.category?.title === c).length || 0,
+          }),
+        ),
       },
       {
         title: "Materials",
-        options: Array.from(new Set(filterOptions.materials || [])).map((m) => ({
-          label: m,
-          count: allProducts?.filter((p) => p.material === m).length || 0,
-        })),
+        options: Array.from(new Set(filterOptions.materials || [])).map(
+          (m) => ({
+            label: m,
+            count: allProducts?.filter((p) => p.material === m).length || 0,
+          }),
+        ),
       },
       {
         title: "Room/Space",
@@ -84,9 +91,13 @@ export function ProductFiltersClient({
 
     switch (sortValue) {
       case "price-low-high":
-        return products.sort((a, b) => parsePrice(a.priceLabel) - parsePrice(b.priceLabel));
+        return products.sort(
+          (a, b) => parsePrice(a.priceLabel) - parsePrice(b.priceLabel),
+        );
       case "price-high-low":
-        return products.sort((a, b) => parsePrice(b.priceLabel) - parsePrice(a.priceLabel));
+        return products.sort(
+          (a, b) => parsePrice(b.priceLabel) - parsePrice(a.priceLabel),
+        );
       case "name-asc":
         return products.sort((a, b) => a.title.localeCompare(b.title));
       case "name-desc":
@@ -96,14 +107,26 @@ export function ProductFiltersClient({
         return products;
     }
   }, [filteredProducts, sortValue]);
+  useEffect(() => {
+    const pendingCategory = sessionStorage.getItem("selectedCategory");
+
+    if (pendingCategory) {
+      setTimeout(() => {
+        setFilters((prev) => ({
+          ...prev,
+          category: [pendingCategory],
+        }));
+        sessionStorage.removeItem("selectedCategory");
+      }, 0);
+    }
+  }, []);
 
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start">
-        
         <ProductFilters
           filterOptions={filterGroups}
+          activeFilters={filters}
           onFilterChange={setFilters}
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
@@ -114,12 +137,11 @@ export function ProductFiltersClient({
             <>
               <div className="mb-6 flex items-center justify-between gap-4 pb-4 border-b border-[#E5E7EB]">
                 <p className="text-sm font-medium text-[#667085]">
-                  Showing {sortedProducts.length}  products
+                  Showing {sortedProducts.length} products
                 </p>
                 <ProductSort value={sortValue} onValueChange={setSortValue} />
               </div>
-              
-      
+
               <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
                 {sortedProducts.map((product) => (
                   <ProductCard key={product._id} product={product} />
@@ -128,9 +150,13 @@ export function ProductFiltersClient({
             </>
           ) : (
             <div className="py-24 text-center rounded-xl border border-dashed border-[#E5E7EB] bg-[#FAFAF8] px-4">
-              <p className="text-lg font-medium text-[#213526]">No products match your filters.</p>
-              <p className="text-sm text-[#667085] mt-1">Try clearing some filters or changing your search phrase.</p>
-              <button 
+              <p className="text-lg font-medium text-[#213526]">
+                No products match your filters.
+              </p>
+              <p className="text-sm text-[#667085] mt-1">
+                Try clearing some filters or changing your search phrase.
+              </p>
+              <button
                 type="button"
                 onClick={() => {
                   setFilters({ category: [], material: [], space: [] });
@@ -143,7 +169,6 @@ export function ProductFiltersClient({
             </div>
           )}
         </div>
-
       </div>
     </div>
   );

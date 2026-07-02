@@ -1,3 +1,5 @@
+"use client"
+
 import { CategoryRef } from "@/types/catalog"
 import Link from "next/link";
 import { CatalogImage } from "@/components/CatalogImage";
@@ -9,10 +11,15 @@ interface CategoryCardProps {
 
 export function CategoryCard({ category, size = "large" }: CategoryCardProps) {
 
+  const handleRoute = ()=>{
+    sessionStorage.setItem("selectedCategory",category.title)
+  }
+
 
   return (
     <Link
-      href={`/products?category=${category.slug}`}
+      href="/products"
+      onClick={handleRoute}
       className={`group relative overflow-hidden rounded-2xl block ${
         size === "large" ? "h-112.5" : "h-53.25"
       }`}
