@@ -1,9 +1,9 @@
-import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { getSanityDataset, getSanityProjectId, apiVersion } from "./sanity/env";
 import { schema } from "./sanity/schemaTypes";
 import { structure } from "./sanity/structure";
+import { GardenStudioToolMenu } from "./sanity/studioComponents";
 
 const projectId = getSanityProjectId();
 if (!projectId) {
@@ -18,5 +18,10 @@ export default defineConfig({
   dataset: getSanityDataset(),
   apiVersion,
   schema,
-  plugins: [structureTool({ structure }), visionTool({ defaultApiVersion: apiVersion })],
+  plugins: [structureTool({ structure })],
+  studio: {
+    components: {
+      toolMenu: GardenStudioToolMenu,
+    },
+  },
 });

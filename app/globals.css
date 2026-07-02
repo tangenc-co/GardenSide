@@ -135,3 +135,74 @@ body {
     @apply font-sans;
   }
 }
+
+.garden-studio-shell {
+  background: #fafaf8;
+  color: #213526;
+  font-family: var(--font-poppins), system-ui, sans-serif;
+}
+
+.garden-studio-shell [data-testid="releases-tool-link"] {
+  display: none;
+}
+
+.garden-studio-shell [data-testid="studio-navbar"] {
+  background: #fafaf8;
+  border-bottom-color: #e5e7eb;
+  box-shadow: 0 1px 0 rgb(33 53 38 / 0.04);
+}
+
+.garden-studio-shell [data-ui="Navbar"],
+.garden-studio-shell [data-ui="Pane"],
+.garden-studio-shell [data-ui="Card"] {
+  font-family: var(--font-poppins), system-ui, sans-serif;
+}
+
+.garden-studio-shell [data-ui="Button"] {
+  border-radius: 6px;
+}
+
+.garden-studio-shell [data-ui="Button"][data-selected],
+.garden-studio-shell [data-ui="Button"][aria-pressed="true"] {
+  background: #213526;
+  border-color: #213526;
+  color: #fff;
+}
+
+.garden-studio-shell [data-ui="Button"][data-selected] [data-ui="Text"],
+.garden-studio-shell [data-ui="Button"][aria-pressed="true"] [data-ui="Text"] {
+  color: inherit;
+}
+
+.garden-studio-shell [data-ui="Button"][data-selected] svg,
+.garden-studio-shell [data-ui="Button"][aria-pressed="true"] svg {
+  color: inherit;
+}
+
+.garden-studio-shell [data-ui="Button"]:not([data-selected]):not([aria-pressed="true"]) {
+  border-color: #d9ded9;
+}
+
+.garden-studio-shell [data-ui="Button"]:focus-visible,
+.garden-studio-shell [data-ui="TextInput"]:focus-within {
+  outline: 2px solid #213526;
+  outline-offset: 2px;
+}
+
+.garden-studio-shell [data-ui="PaneHeader"],
+.garden-studio-shell [data-ui="PaneFooter"] {
+  background: #fff;
+  border-color: #e5e7eb;
+}
+
+.garden-studio-shell [data-ui="MenuButton"],
+.garden-studio-shell [data-ui="Popover"],
+.garden-studio-shell [data-ui="Dialog"] {
+  border-radius: 8px;
+}
+
+.garden-studio-shell [data-ui="TextInput"],
+.garden-studio-shell [data-ui="Select"],
+.garden-studio-shell [data-ui="Textarea"] {
+  border-radius: 6px;
+}
