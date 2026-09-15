@@ -80,14 +80,14 @@ export function SiteHeader() {
 
 
         <div className="flex gap-4 items-center">
-          {hasSanityConfig && (
+          {/* {hasSanityConfig && (
             <Link 
               href="/studio" 
               className="hidden sm:inline-flex items-center justify-center text-[#056839] border border-[#056839] rounded-md px-4 py-2 font-medium text-base xl:text-lg hover:bg-[#056839] hover:text-white transition-all duration-200 shadow-sm outline-none"
             >
               Studio
             </Link>
-          )}
+          )} */}
 
           <button 
             type="button"
@@ -166,7 +166,7 @@ export function SiteHeader() {
 
 
         <div className="pt-6 border-t border-[#E5E7EB] flex flex-col gap-3">
-          {hasSanityConfig && (
+          {/* {hasSanityConfig && (
             <Link
               href="/studio"
               onClick={closeMobileMenu}
@@ -174,7 +174,7 @@ export function SiteHeader() {
             >
               Studio
             </Link>
-          )}
+          )} */}
           <button 
             type="button"
             className="w-full bg-[#213526] text-white rounded-md py-3 font-medium text-base hover:bg-[#16241a] transition-colors shadow-sm"
